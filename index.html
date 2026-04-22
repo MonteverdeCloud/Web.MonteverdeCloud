@@ -328,115 +328,8 @@
             opacity: 0.85;
         }
 
-        /* ── Panel DERECHO – Favoritos ── */
-        .favorites-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .fav-panel-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
-        }
-
-        .fav-panel-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #ffb347, #ff6b35);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-        }
-
-        .fav-panel-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .fav-panel-subtitle {
-            font-size: 11px;
-            color: #8fbfa9;
-        }
-
-        .fav-empty {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 40px 20px;
-            text-align: center;
-            background: rgba(74, 144, 117, 0.1);
-            border: 1px dashed rgba(107, 191, 160, 0.25);
-            border-radius: 18px;
-        }
-
-        .fav-empty-icon {
-            font-size: 42px;
-            opacity: 0.5;
-        }
-
-        .fav-empty-text {
-            font-size: 13px;
-            color: #8fbfa9;
-            line-height: 1.5;
-        }
-
-        .fav-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        /* Botón de favorito en app-icon */
         .app-item {
             position: relative;
-        }
-
-        .fav-btn {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            width: 20px;
-            height: 20px;
-            background: rgba(26, 60, 52, 0.9);
-            border-radius: 50%;
-            border: 1.5px solid rgba(107, 191, 160, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            cursor: pointer;
-            z-index: 10;
-            transition: transform 0.2s ease;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .app-item:hover .fav-btn,
-        .app-item.show-fav .fav-btn {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .fav-btn.is-fav {
-            opacity: 1 !important;
-            pointer-events: auto !important;
-            background: linear-gradient(135deg, #ffb347, #ff6b35);
-            border-color: transparent;
-        }
-
-        .fav-btn:hover {
-            transform: scale(1.2);
         }
 
         /* Widget de imágenes rectangular */
@@ -919,37 +812,31 @@
                             onclick="launchApp('Cafetería')">
                             <div class="app-icon app-cafeteria">☕</div>
                             <div class="app-label">Cafetería</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                         <div class="app-item" data-app="Restaurante" data-icon="🍽️" data-class="app-cafeteria"
                             onclick="launchApp('Restaurante')">
                             <div class="app-icon app-cafeteria">🍽️</div>
                             <div class="app-label">Restaurante</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                         <div class="app-item" data-app="Reserva" data-icon="🌲" data-class="app-spa"
                             onclick="launchApp('Reserva')">
                             <div class="app-icon app-spa">🌲</div>
                             <div class="app-label">Reserva</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                         <div class="app-item" data-app="Spa" data-icon="🧘" data-class="app-spa"
                             onclick="launchApp('Spa')">
                             <div class="app-icon app-spa">🧘</div>
                             <div class="app-label">Spa</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                         <div class="app-item" data-app="Barbería" data-icon="✂️" data-class="app-barberia"
                             onclick="launchApp('Barbería')">
                             <div class="app-icon app-barberia">✂️</div>
                             <div class="app-label">Barbería</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                         <div class="app-item" data-app="Transporte" data-icon="🚗" data-class="app-transporte"
                             onclick="launchApp('Transporte')">
                             <div class="app-icon app-transporte">🚗</div>
                             <div class="app-label">Transporte</div>
-                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
                     </div>
                     <!-- /Apps -->
@@ -957,26 +844,14 @@
                 </div>
                 <!-- /PANTALLA CENTRAL -->
 
-                <!-- ══════════ PANTALLA DERECHA: Favoritos ══════════ -->
-                <div class="screen-panel" id="panelFavorites">
-                    <div class="favorites-panel">
-                        <!-- Header -->
-                        <div class="fav-panel-header">
-                            <div class="fav-panel-icon">⭐</div>
-                            <div>
-                                <div class="fav-panel-title">Favoritos</div>
-                                <div class="fav-panel-subtitle">Tus accesos rápidos</div>
-                            </div>
-                        </div>
-
-                        <!-- Contenido de favoritos (se llena dinámicamente) -->
-                        <div id="favoritesContent">
-                            <div class="fav-empty" id="favEmpty">
-                                <div class="fav-empty-icon">⭐</div>
-                                <div class="fav-empty-text">Aún no tienes favoritos.<br>Mantén presionado un ícono en la
-                                    pantalla principal para agregarlo.</div>
-                            </div>
-                            <div class="fav-grid" id="favGrid" style="display:none"></div>
+                <!-- ══════════ PANTALLA DERECHA: Información ══════════ -->
+                <div class="screen-panel" id="panelInfo">
+                    <div style="padding: 20px;">
+                        <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: center;">Información</h2>
+                        <div style="background: rgba(74, 144, 117, 0.2); backdrop-filter: blur(20px); border-radius: 14px; border: 1px solid rgba(107, 191, 160, 0.3); padding: 16px; color: #8fbfa9; line-height: 1.6;">
+                            <p style="margin-bottom: 12px;"><strong style="color: #fff;">Monteverde Cloud</strong></p>
+                            <p>Acceso rápido a todos los servicios y comercios del Monteverde Cloud.</p>
+                            <p style="margin-top: 12px; font-size: 12px; opacity: 0.8;">Desliza entre los paneles para explorar más opciones.</p>
                         </div>
                     </div>
                 </div>
@@ -1074,7 +949,7 @@
 
         // Paneles laterales con scroll: interceptar gestos verticales
         // para que el wrapper no bloquee el scroll nativo del panel
-        ['panelAds', 'panelFavorites'].forEach(id => {
+        ['panelAds', 'panelInfo'].forEach(id => {
             const panel = document.getElementById(id);
             let _startX = 0, _startY = 0;
             panel.addEventListener('touchstart', e => {
@@ -1150,7 +1025,6 @@
         let carouselInterval;
         let autoPlayTimeout;
         let isManualControl = false;
-        let touchStartX = 0;
 
         function showImage(index, direction = 'right') {
             if (currentIndex !== index) {
@@ -1186,108 +1060,70 @@
 
         startCarousel();
 
-        widgetDisplay.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        // Control del carrusel con clicks en los dots
+        document.querySelectorAll('.scroll-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => selectImage(index));
+        });
+
+        // Control del carrusel con deslizamiento (swipe y drag)
+        let carouselTouchStartX = 0;
+        let carouselTouchStartY = 0;
+        let carouselIsDragging = false;
+        let carouselDragStartX = 0;
+        let carouselIsHorizontalSwipe = null;
+
+        widgetDisplay.addEventListener('touchstart', (e) => {
+            carouselTouchStartX = e.touches[0].clientX;
+            carouselTouchStartY = e.touches[0].clientY;
+            carouselIsHorizontalSwipe = null;
+        }, { passive: true });
+
+        widgetDisplay.addEventListener('touchmove', (e) => {
+            if (carouselIsHorizontalSwipe === null) {
+                const dx = Math.abs(e.touches[0].clientX - carouselTouchStartX);
+                const dy = Math.abs(e.touches[0].clientY - carouselTouchStartY);
+                carouselIsHorizontalSwipe = dx > dy;
+            }
+            if (carouselIsHorizontalSwipe) e.preventDefault();
+        }, { passive: false });
+
         widgetDisplay.addEventListener('touchend', (e) => {
-            const diff = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 30) {
+            if (!carouselIsHorizontalSwipe) return;
+            const diff = carouselTouchStartX - e.changedTouches[0].clientX;
+            const threshold = widgetDisplay.getBoundingClientRect().width * 0.13;
+            if (Math.abs(diff) > threshold) {
                 isManualControl = true;
-                diff > 0 ? showImage((currentIndex + 1) % cards.length, 'left') : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
+                diff > 0 
+                    ? showImage((currentIndex + 1) % cards.length, 'left')
+                    : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
                 pauseAutoPlay();
             }
         }, { passive: true });
 
-        let lastScrollTime = 0;
-        widgetDisplay.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const now = Date.now();
-            if (now - lastScrollTime < 600) return;
-            lastScrollTime = now;
-            isManualControl = true;
-            (e.deltaX > 0 || e.deltaY > 0)
-                ? showImage((currentIndex + 1) % cards.length, 'left')
-                : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
-            pauseAutoPlay();
-        }, { passive: false });
+        // Arrastre con mouse en el carrusel
+        widgetDisplay.addEventListener('mousedown', (e) => {
+            carouselIsDragging = true;
+            carouselDragStartX = e.clientX;
+        });
+
+        widgetDisplay.addEventListener('mousemove', (e) => {
+            if (!carouselIsDragging) return;
+            const diff = carouselDragStartX - e.clientX;
+            if (Math.abs(diff) > 10) {
+                isManualControl = true;
+                if (diff > 0) showImage((currentIndex + 1) % cards.length, 'left');
+                else showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
+                carouselIsDragging = false;
+                pauseAutoPlay();
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            carouselIsDragging = false;
+        });
 
         widgetDisplay.addEventListener('mouseenter', () => clearInterval(carouselInterval));
         widgetDisplay.addEventListener('mouseleave', () => { if (!isManualControl) startCarousel(); });
-
-        // ══════════════════════════════════════════
-        // Sistema de Favoritos
-        // ══════════════════════════════════════════
-        let favorites = JSON.parse(localStorage.getItem('mc_favorites') || '[]');
-
-        function saveFavorites() {
-            localStorage.setItem('mc_favorites', JSON.stringify(favorites));
-        }
-
-        function toggleFavorite(event, btn) {
-            event.stopPropagation();
-            const appItem = btn.closest('.app-item');
-            const appName = appItem.dataset.app;
-            const appIcon = appItem.dataset.icon;
-            const appClass = appItem.dataset.class;
-            const isFav = favorites.some(f => f.name === appName);
-
-            if (isFav) {
-                favorites = favorites.filter(f => f.name !== appName);
-                btn.textContent = '☆';
-                btn.classList.remove('is-fav');
-            } else {
-                favorites.push({ name: appName, icon: appIcon, cls: appClass });
-                btn.textContent = '★';
-                btn.classList.add('is-fav');
-            }
-            saveFavorites();
-            renderFavorites();
-        }
-
-        function renderFavorites() {
-            const favEmpty = document.getElementById('favEmpty');
-            const favGrid = document.getElementById('favGrid');
-
-            if (favorites.length === 0) {
-                favEmpty.style.display = 'flex';
-                favGrid.style.display = 'none';
-                return;
-            }
-
-            favEmpty.style.display = 'none';
-            favGrid.style.display = 'grid';
-            favGrid.innerHTML = '';
-
-            favorites.forEach(fav => {
-                const item = document.createElement('div');
-                item.className = 'app-item';
-                item.innerHTML = `
-                    <div class="app-icon ${fav.cls}">${fav.icon}</div>
-                    <div class="app-label">${fav.name}</div>
-                `;
-                item.addEventListener('click', () => launchApp(fav.name));
-                favGrid.appendChild(item);
-            });
-        }
-
-        function initFavButtons() {
-            document.querySelectorAll('#appsGrid .app-item').forEach(item => {
-                const appName = item.dataset.app;
-                const btn = item.querySelector('.fav-btn');
-                if (favorites.some(f => f.name === appName)) {
-                    btn.textContent = '★';
-                    btn.classList.add('is-fav');
-                }
-
-                // Mostrar fav-btn al mantener presionado
-                let pressTimer;
-                item.addEventListener('touchstart', () => {
-                    pressTimer = setTimeout(() => item.classList.add('show-fav'), 500);
-                }, { passive: true });
-                item.addEventListener('touchend', () => clearTimeout(pressTimer), { passive: true });
-            });
-        }
-
-        initFavButtons();
-        renderFavorites();
 
         // ══════════════════════════════════════════
         // Partículas
