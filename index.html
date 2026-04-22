@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Monteverde Cloud - Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -711,10 +713,21 @@
             opacity: 0;
         }
 
-        .folder-app-item:nth-child(1) { animation-delay: 0.05s; }
-        .folder-app-item:nth-child(2) { animation-delay: 0.1s; }
-        .folder-app-item:nth-child(3) { animation-delay: 0.15s; }
-        .folder-app-item:nth-child(4) { animation-delay: 0.2s; }
+        .folder-app-item:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .folder-app-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .folder-app-item:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .folder-app-item:nth-child(4) {
+            animation-delay: 0.2s;
+        }
 
         .folder-app-item:active {
             transform: scale(0.88);
@@ -866,6 +879,7 @@
         }
 
         @keyframes float {
+
             0%,
             100% {
                 transform: translateY(100vh) scale(0);
@@ -1047,8 +1061,10 @@
                         <div class="folder-item" onclick="openFolder('comida', this)">
                             <div class="folder-icon comida">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">☕</div>
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🍽️</div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"><i
+                                            class="fas fa-coffee"></i></div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"><i
+                                            class="fas fa-utensils"></i></div>
                                 </div>
                             </div>
                             <div class="folder-label">Comida</div>
@@ -1058,45 +1074,54 @@
                         <div class="folder-item" onclick="openFolder('descanso', this)">
                             <div class="folder-icon descanso">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🏨</div>
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🧘</div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"><i
+                                            class="fas fa-hotel"></i></div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"><i
+                                            class="fas fa-spa"></i></div>
                                 </div>
                             </div>
                             <div class="folder-label">Descanso</div>
-                        </div>
-
-                        <!-- Carpeta: Servicios -->
-                        <div class="folder-item" onclick="openFolder('servicios', this)">
-                            <div class="folder-icon servicios">
-                                <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">✂️</div>
-                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">🚗</div>
-                                </div>
-                            </div>
-                            <div class="folder-label">Servicios</div>
-                        </div>
-
-                        <!-- Carpeta: Salud -->
-                        <div class="folder-item" onclick="openFolder('salud', this)">
-                            <div class="folder-icon salud">
-                                <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);">🏨</div>
-                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);">💊</div>
-                                </div>
-                            </div>
-                            <div class="folder-label">Salud</div>
                         </div>
 
                         <!-- Carpeta: Compras -->
                         <div class="folder-item" onclick="openFolder('compras', this)">
                             <div class="folder-icon compras">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">🎁</div>
-                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">🏬</div>
-                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">👕</div>
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);"><i
+                                            class="fas fa-gift"></i></div>
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);"><i
+                                            class="fas fa-store"></i></div>
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);"><i
+                                            class="fas fa-shirt"></i></div>
                                 </div>
                             </div>
                             <div class="folder-label">Compras</div>
+                        </div>
+
+                        <!-- Carpeta: Salud -->
+                        <div class="folder-item" onclick="openFolder('salud', this)">
+                            <div class="folder-icon salud">
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);"><i
+                                            class="fas fa-hospital"></i></div>
+                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);"><i
+                                            class="fas fa-pills"></i></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Salud</div>
+                        </div>
+
+                        <!-- Carpeta: Servicios -->
+                        <div class="folder-item" onclick="openFolder('servicios', this)">
+                            <div class="folder-icon servicios">
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"><i
+                                            class="fas fa-cut"></i></div>
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"><i
+                                            class="fas fa-car"></i></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Servicios</div>
                         </div>
                     </div>
                     <!-- /Apps -->
@@ -1107,8 +1132,10 @@
                 <!-- ══════════ PANTALLA DERECHA: Información ══════════ -->
                 <div class="screen-panel" id="panelInfo">
                     <div style="padding: 20px;">
-                        <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: center;">Favoritos</h2>
-                        <div style="background: rgba(74, 144, 117, 0.2); backdrop-filter: blur(20px); border-radius: 14px; border: 1px solid rgba(107, 191, 160, 0.3); padding: 16px; color: #8fbfa9; line-height: 1.6;">
+                        <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: center;">Favoritos
+                        </h2>
+                        <div
+                            style="background: rgba(74, 144, 117, 0.2); backdrop-filter: blur(20px); border-radius: 14px; border: 1px solid rgba(107, 191, 160, 0.3); padding: 16px; color: #8fbfa9; line-height: 1.6;">
                             <p style="margin-bottom: 12px;"><strong style="color: #fff;">Monteverde Cloud</strong></p>
                             <p>Acceso rápido a todos los servicios y comercios de Monteverde.</p>
                         </div>
@@ -1128,22 +1155,22 @@
             </div>
             <div class="dock">
                 <div class="app-item" onclick="launchApp('Noticias')">
-                    <div class="app-icon app-noticias">📰</div>
+                    <div class="app-icon app-noticias"><i class="fas fa-newspaper"></i></div>
                     <div class="app-label">Noticias</div>
                 </div>
 
                 <div class="app-item" onclick="launchApp('Facebook')">
-                    <div class="app-icon app-facebook">📘</div>
+                    <div class="app-icon app-noticias"><i class="fab fa-facebook-f"></i></div>
                     <div class="app-label">Contactanos</div>
                 </div>
 
                 <div class="app-item" onclick="launchApp('Instagram')">
-                    <div class="app-icon app-instagram">🪙</div>
+                    <div class="app-icon app-noticias"><i class="fas fa-coins"></i></div>
                     <div class="app-label">Propinas</div>
                 </div>
 
                 <div class="app-item" onclick="launchApp('Agregar comercio')">
-                    <div class="app-icon app-agregar">➕</div>
+                    <div class="app-icon app-noticias"><i class="fas fa-plus"></i></div>
                     <div class="app-label">Agregar comercio</div>
                 </div>
             </div>
@@ -1155,7 +1182,7 @@
             <div class="folder-modal" id="folderModal" onclick="event.stopPropagation()">
                 <div class="folder-modal-header">
                     <div class="folder-modal-title" id="folderModalTitle">Carpeta</div>
-                    <button class="folder-close-btn" onclick="closeFolder()">✕</button>
+                    <button class="folder-close-btn" onclick="closeFolder()"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="folder-apps-list" id="folderAppsList"></div>
             </div>
@@ -1363,7 +1390,7 @@
             const threshold = widgetDisplay.getBoundingClientRect().width * 0.13;
             if (Math.abs(diff) > threshold) {
                 isManualControl = true;
-                diff > 0 
+                diff > 0
                     ? showImage((currentIndex + 1) % cards.length, 'left')
                     : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
                 pauseAutoPlay();
@@ -1457,27 +1484,28 @@
         // ══════════════════════════════════════════
         const folderContents = {
             comida: [
-                { name: 'Cafetería', icon: '☕' },
-                { name: 'Restaurante', icon: '🍽️' }
+                { name: 'Cafetería', icon: '<i class="fas fa-coffee"></i>' },
+                { name: 'Restaurante', icon: '<i class="fas fa-utensils"></i>' }
             ],
             descanso: [
-                { name: 'Hoteles', icon: '🏨' },
-                { name: 'Spa', icon: '🧘' }
+                { name: 'Hoteles', icon: '<i class="fas fa-hotel"></i>' },
+                { name: 'Spa', icon: '<i class="fas fa-spa"></i>' }
             ],
             servicios: [
-                { name: 'Barbería', icon: '✂️' },
-                { name: 'Transporte', icon: '🚗' }
+                { name: 'Barbería', icon: '<i class="fas fa-cut"></i>' },
+                { name: 'Transporte', icon: '<i class="fas fa-car"></i>' }
             ],
             salud: [
-                { name: 'Clínicas', icon: '🏥' },
-                { name: 'Farmacias', icon: '💊' }
+                { name: 'Clínicas', icon: '<i class="fas fa-hospital"></i>' },
+                { name: 'Farmacias', icon: '<i class="fas fa-pills"></i>' }
             ],
             compras: [
-                { name: 'Souvenir', icon: '🎁' },
-                { name: 'Super Mercado', icon: '🏬' },
-                { name: 'Ropa', icon: '👕' }
+                { name: 'Souvenir', icon: '<i class="fas fa-gift"></i>' },
+                { name: 'Super Mercado', icon: '<i class="fas fa-store"></i>' },
+                { name: 'Ropa', icon: '<i class="fas fa-shirt"></i>' }
             ]
         };
+
 
         const folderNames = {
             comida: 'Comida',
