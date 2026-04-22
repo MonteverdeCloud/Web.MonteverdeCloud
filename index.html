@@ -134,7 +134,10 @@
             width: calc(390px * 3);
             height: 100%;
             transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
+        }
+
+        .screens-slider.no-transition {
+            transition: none;
         }
 
         @media (max-width: 430px) {
@@ -143,26 +146,25 @@
             }
         }
 
-        .screens-slider.no-transition {
-            transition: none;
-        }
-
         /* Cada pantalla ocupa 1/3 del slider = ancho del frame */
         .screen-panel {
             width: 390px;
             height: 100%;
             flex-shrink: 0;
-            overflow-y: hidden;
+            overflow-y: auto;
             overflow-x: hidden;
-            padding: 14px 18px 90px;
+            padding: 14px 16px 100px;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* En móvil real, ancho 100% del viewport */
         @media (max-width: 430px) {
             .screen-panel {
                 width: 100vw;
+                padding: 12px 14px 120px;
+                overflow-y: scroll;
             }
         }
 
@@ -174,24 +176,24 @@
         .page-dots {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            padding: 6px 0 8px;
+            gap: 6px;
+            padding: 4px 0 4px;
             z-index: 200;
             pointer-events: none;
         }
 
         .page-dot {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.35);
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         .page-dot.active {
             background: #ffffff;
-            width: 22px;
-            border-radius: 4px;
+            width: 20px;
+            border-radius: 3px;
         }
 
         /* ── Panel IZQUIERDO – Google Ads ── */
@@ -336,16 +338,16 @@
         .widget-container {
             width: 100%;
             max-width: 400px;
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
             background: rgba(74, 144, 117, 0.2);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
+            border-radius: 18px;
             border: 1px solid rgba(107, 191, 160, 0.3);
             overflow: hidden;
             position: relative;
             box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 8px 32px rgba(0, 0, 0, 0.25),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
@@ -488,14 +490,194 @@
             background: rgba(143, 191, 169, 0.7);
         }
 
-        /* Grid de aplicaciones */
+        /* Grid de carpetas */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 12px;
             max-width: 400px;
             margin: 0 auto;
             padding-bottom: 0;
+        }
+
+        /* Contenedor de carpeta */
+        .folder-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Carpeta (icono) */
+        .folder-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f5a623 0%, #f78e69 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow:
+                0 8px 16px rgba(245, 166, 35, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .folder-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+            pointer-events: none;
+        }
+
+        .folder-item:active .folder-icon {
+            transform: scale(0.92);
+        }
+
+        /* Vista previa de apps dentro de la carpeta */
+        .folder-preview {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 50px;
+            height: 50px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .preview-app {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .folder-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: #e8f5f0;
+            text-align: center;
+            max-width: 70px;
+            line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal de carpeta abierta */
+        .folder-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .folder-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .folder-modal {
+            background: rgba(26, 60, 52, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 20px;
+            max-width: 300px;
+            width: 85%;
+            border: 1px solid rgba(107, 191, 160, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.85);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .folder-modal.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .folder-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .folder-modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .folder-close-btn {
+            background: rgba(74, 144, 117, 0.3);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #8fbfa9;
+            font-size: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .folder-close-btn:active {
+            transform: scale(0.9);
+        }
+
+        .folder-apps-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .folder-app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            animation: appEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        .folder-app-item:nth-child(1) { animation-delay: 0.05s; }
+        .folder-app-item:nth-child(2) { animation-delay: 0.1s; }
+        .folder-app-item:nth-child(3) { animation-delay: 0.15s; }
+        .folder-app-item:nth-child(4) { animation-delay: 0.2s; }
+
+        .folder-app-item:active {
+            transform: scale(0.88);
+            opacity: 0.8;
         }
 
         .app-item {
@@ -569,13 +751,22 @@
         }
 
         .app-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
             color: #e8f5f0;
             text-align: center;
-            max-width: 64px;
-            line-height: 1.2;
+            max-width: 60px;
+            line-height: 1.3;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            word-break: break-word;
+        }
+
+        @media (max-width: 430px) {
+            .app-label {
+                font-size: 9px;
+                max-width: 55px;
+                line-height: 1.2;
+            }
         }
 
         /* Dock inferior */
@@ -584,20 +775,32 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 10px 20px 14px;
-            background: rgba(26, 60, 52, 0.85);
+            padding: 8px 16px 12px;
+            background: rgba(26, 60, 52, 0.95);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-top: 1px solid rgba(107, 191, 160, 0.2);
             z-index: 100;
+            safe-area-inset-bottom: env(safe-area-inset-bottom);
         }
 
         .dock {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 10px;
             max-width: 400px;
             margin: 0 auto;
+        }
+
+        @media (max-width: 430px) {
+            .dock-container {
+                padding: 8px 12px 16px;
+                backdrop-filter: blur(20px);
+            }
+
+            .dock {
+                gap: 8px;
+            }
         }
 
         /* Partículas */
@@ -622,7 +825,6 @@
         }
 
         @keyframes float {
-
             0%,
             100% {
                 transform: translateY(100vh) scale(0);
@@ -630,11 +832,11 @@
             }
 
             10% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             90% {
-                opacity: 1;
+                opacity: 0.5;
             }
 
             100% {
@@ -646,7 +848,7 @@
         @keyframes appEnter {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translateY(20px) scale(0.95);
             }
 
             to {
@@ -678,15 +880,29 @@
 
         @media (max-width: 380px) {
 
-            .apps-grid,
-            .dock {
-                gap: 15px;
+            .apps-grid {
+                gap: 10px;
             }
 
             .app-icon {
-                width: 58px;
-                height: 58px;
-                font-size: 24px;
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+            }
+
+            .folder-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 26px;
+            }
+
+            .folder-modal {
+                max-width: 260px;
+                padding: 18px;
+            }
+
+            .folder-apps-list {
+                gap: 10px;
             }
         }
 
@@ -802,40 +1018,74 @@
                     </div>
                     <!-- /Widget de carrusel -->
 
-                    <!-- Apps -->
+                    <!-- Apps (Carpetas) -->
                     <div class="apps-grid" id="appsGrid">
-                        <div class="app-item" data-app="Cafetería" data-icon="☕" data-class="app-cafeteria"
-                            onclick="launchApp('Cafetería')">
-                            <div class="app-icon app-cafeteria">☕</div>
-                            <div class="app-label">Cafetería</div>
+                        <!-- Carpeta: Comida -->
+                        <div class="folder-item" onclick="openFolder('comida', this)">
+                            <div class="folder-icon">🍴
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">☕</div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🍽️</div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Comida</div>
                         </div>
-                        <div class="app-item" data-app="Restaurante" data-icon="🍽️" data-class="app-cafeteria"
-                            onclick="launchApp('Restaurante')">
-                            <div class="app-icon app-cafeteria">🍽️</div>
-                            <div class="app-label">Restaurante</div>
+
+                        <!-- Carpeta: Descanso -->
+                        <div class="folder-item" onclick="openFolder('descanso', this)">
+                            <div class="folder-icon">🏖️
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🏨</div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🧘</div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Descanso</div>
                         </div>
-                        <div class="app-item" data-app="Reserva" data-icon="🌲" data-class="app-spa"
-                            onclick="launchApp('Reserva')">
-                            <div class="app-icon app-spa">🌲</div>
-                            <div class="app-label">Reserva</div>
+
+                        <!-- Carpeta: Servicios -->
+                        <div class="folder-item" onclick="openFolder('servicios', this)">
+                            <div class="folder-icon">🔧
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">✂️</div>
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">🚗</div>
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Servicios</div>
                         </div>
-                        <div class="app-item" data-app="Spa" data-icon="🧘" data-class="app-spa"
-                            onclick="launchApp('Spa')">
-                            <div class="app-icon app-spa">🧘</div>
-                            <div class="app-label">Spa</div>
-                        </div>
-                        <div class="app-item" data-app="Barbería" data-icon="✂️" data-class="app-barberia"
-                            onclick="launchApp('Barbería')">
-                            <div class="app-icon app-barberia">✂️</div>
-                            <div class="app-label">Barbería</div>
-                        </div>
-                        <div class="app-item" data-app="Transporte" data-icon="🚗" data-class="app-transporte"
-                            onclick="launchApp('Transporte')">
-                            <div class="app-icon app-transporte">🚗</div>
-                            <div class="app-label">Transporte</div>
+
+                        <!-- Carpeta: Salud -->
+                        <div class="folder-item" onclick="openFolder('salud', this)">
+                            <div class="folder-icon" style="background: linear-gradient(135deg, #e06666 0%, #f08888 100%);">
+                                🏥
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);">🏨</div>
+                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);">💊</div>
+                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);"></div>
+                                </div>
+                            </div>
+                            <div class="folder-label">Salud</div>
                         </div>
                     </div>
                     <!-- /Apps -->
+
+                    <!-- Modal para carpeta abierta -->
+                    <div class="folder-modal-overlay" id="folderModalOverlay" onclick="closeFolder()">
+                        <div class="folder-modal" id="folderModal" onclick="event.stopPropagation()">
+                            <div class="folder-modal-header">
+                                <div class="folder-modal-title" id="folderModalTitle">Carpeta</div>
+                                <button class="folder-close-btn" onclick="closeFolder()">✕</button>
+                            </div>
+                            <div class="folder-apps-list" id="folderAppsList"></div>
+                        </div>
+                    </div>
+                    <!-- /Modal -->
 
                 </div>
                 <!-- /PANTALLA CENTRAL -->
@@ -876,8 +1126,8 @@
                 </div>
 
                 <div class="app-item" onclick="launchApp('Instagram')">
-                    <div class="app-icon app-instagram">📬</div>
-                    <div class="app-label">Sugerencias</div>
+                    <div class="app-icon app-instagram">🪙</div>
+                    <div class="app-label">Propinas</div>
                 </div>
 
                 <div class="app-item" onclick="launchApp('Agregar comercio')">
@@ -1177,6 +1427,82 @@
                 setTimeout(() => overlay.remove(), 300);
             }, 1500);
         }
+
+        // ══════════════════════════════════════════
+        // Sistema de carpetas tipo iOS
+        // ══════════════════════════════════════════
+        const folderContents = {
+            comida: [
+                { name: 'Cafetería', icon: '☕' },
+                { name: 'Restaurante', icon: '🍽️' }
+            ],
+            descanso: [
+                { name: 'Hoteles', icon: '🏨' },
+                { name: 'Spa', icon: '🧘' }
+            ],
+            servicios: [
+                { name: 'Barbería', icon: '✂️' },
+                { name: 'Transporte', icon: '🚗' }
+            ],
+            salud: [
+                { name: 'Clínicas', icon: '🏥' },
+                { name: 'Farmacias', icon: '💊' }
+            ]
+        };
+
+        const folderNames = {
+            comida: 'Comida',
+            descanso: 'Descanso',
+            servicios: 'Servicios',
+            salud: 'Salud'
+        };
+
+        function openFolder(folderId, folderElement) {
+            const overlay = document.getElementById('folderModalOverlay');
+            const modal = document.getElementById('folderModal');
+            const title = document.getElementById('folderModalTitle');
+            const appsList = document.getElementById('folderAppsList');
+
+            // Limpiar lista anterior
+            appsList.innerHTML = '';
+
+            // Configurar título
+            title.textContent = folderNames[folderId];
+
+            // Agregar apps de la carpeta
+            folderContents[folderId].forEach(app => {
+                const appElement = document.createElement('div');
+                appElement.className = 'folder-app-item';
+                appElement.onclick = (e) => {
+                    e.stopPropagation();
+                    closeFolder();
+                    launchApp(app.name);
+                };
+                appElement.innerHTML = `
+                    <div class="app-icon" style="background: linear-gradient(135deg, #4a9075, #6bbfa0); width: 50px; height: 50px; font-size: 20px;">
+                        ${app.icon}
+                    </div>
+                    <div class="app-label" style="max-width: 60px; font-size: 10px;">${app.name}</div>
+                `;
+                appsList.appendChild(appElement);
+            });
+
+            // Mostrar modal
+            overlay.classList.add('active');
+            modal.classList.add('active');
+        }
+
+        function closeFolder() {
+            const overlay = document.getElementById('folderModalOverlay');
+            const modal = document.getElementById('folderModal');
+            overlay.classList.remove('active');
+            modal.classList.remove('active');
+        }
+
+        // Cerrar modal al presionar ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeFolder();
+        });
 
         // Prevenir zoom
         document.addEventListener('dblclick', (e) => e.preventDefault(), { passive: false });
