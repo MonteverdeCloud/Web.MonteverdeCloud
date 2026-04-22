@@ -209,15 +209,39 @@
         }
 
         .ads-panel-header .ads-logo {
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
             background: #fff;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .ads-panel-header .ads-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ads-iframe-wrapper {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(107, 191, 160, 0.2);
+        }
+
+        .ads-iframe-wrapper iframe {
+            display: block;
+            width: 100% !important;
+            min-width: 0;
+            border: none !important;
         }
 
         .ads-panel-title {
@@ -818,55 +842,18 @@
                     <div class="ads-panel">
                         <!-- Header -->
                         <div class="ads-panel-header">
-                            <div class="ads-logo">🅶</div>
+                            <div class="ads-logo"><img src="./img/sitio/logo.jpg" /></div>
                             <div>
                                 <div class="ads-panel-title">Anuncios</div>
                                 <div class="ads-panel-subtitle">Publicidad en Monteverde</div>
                             </div>
                         </div>
-
-                        <!-- Ad 1 -->
-                        <div class="ad-card">
-                            <img class="ad-card-image"
-                                src="https://images.unsplash.com/photo-1511367732-b9483c1222e4?w=600&h=320&fit=crop"
-                                alt="Hotel en Monteverde">
-                            <div class="ad-card-body">
-                                <div class="ad-badge">📢 Anuncio</div>
-                                <div class="ad-title">Hotel Vista Verde</div>
-                                <div class="ad-desc">Disfruta de una experiencia única rodeado del bosque nuboso.
-                                    Reserva
-                                    ahora y obtén 20% de descuento.</div>
-                                <a href="#" class="ad-cta">Reservar ahora</a>
-                            </div>
-                        </div>
-
-                        <!-- Ad 2 -->
-                        <div class="ad-card">
-                            <img class="ad-card-image"
-                                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=320&fit=crop"
-                                alt="Restaurante">
-                            <div class="ad-card-body">
-                                <div class="ad-badge">📢 Anuncio</div>
-                                <div class="ad-title">Soda El Colibrí</div>
-                                <div class="ad-desc">Cocina típica costarricense con ingredientes locales frescos.
-                                    ¡Visítanos en el centro de Monteverde!</div>
-                                <a href="#" class="ad-cta">Ver menú</a>
-                            </div>
-                        </div>
-
-                        <!-- Ad 3 -->
-                        <div class="ad-card">
-                            <img class="ad-card-image"
-                                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=320&fit=crop"
-                                alt="Tour">
-                            <div class="ad-card-body">
-                                <div class="ad-badge">📢 Anuncio</div>
-                                <div class="ad-title">Canopy Sky Adventures</div>
-                                <div class="ad-desc">Los mejores tours de canopy de Costa Rica. Vuela sobre el bosque
-                                    nuboso
-                                    y vive la emoción.</div>
-                                <a href="#" class="ad-cta">Más información</a>
-                            </div>
+                        <div class="ads-iframe-wrapper">
+                            <iframe
+                                src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0egioATSBdCA4G1ATqcuXJKxRSmajv1wbkVS95ExoPyHSaNjG7ffnrZJTmU3byXrtl%26id%3D61578149921802&show_text=true&width=340"
+                                width="340" height="500" style="border:none;overflow:hidden" scrolling="no"
+                                frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                         </div>
                     </div>
                 </div>
