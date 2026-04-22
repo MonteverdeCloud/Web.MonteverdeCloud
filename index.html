@@ -540,6 +540,47 @@
             pointer-events: none;
         }
 
+        /* Estilos de colores para cada carpeta */
+        .folder-icon.comida {
+            background: linear-gradient(135deg, #6bbfa0 0%, #4a9075 100%);
+            box-shadow:
+                0 8px 16px rgba(107, 191, 160, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .folder-icon.descanso {
+            background: linear-gradient(135deg, #4a9075 0%, #2d5f52 100%);
+            box-shadow:
+                0 8px 16px rgba(74, 144, 117, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .folder-icon.servicios {
+            background: linear-gradient(135deg, #5a8a75 0%, #3d6b5c 100%);
+            box-shadow:
+                0 8px 16px rgba(90, 138, 117, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .folder-icon.salud {
+            background: linear-gradient(135deg, #8fbfa9 0%, #6bbfa0 100%);
+            box-shadow:
+                0 8px 16px rgba(143, 191, 169, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
+        .folder-icon.compras {
+            background: linear-gradient(135deg, #70b8a3 0%, #4a9075 100%);
+            box-shadow:
+                0 8px 16px rgba(112, 184, 163, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        }
+
         .folder-item:active .folder-icon {
             transform: scale(0.92);
         }
@@ -946,24 +987,6 @@
         <div class="screens-wrapper" id="screensWrapper">
             <div class="screens-slider" id="screensSlider">
 
-                <!-- ══════════ PANTALLA IZQUIERDA: Anuncios ══════════ -->
-                <div class="screen-panel" id="panelAds" onTouchStart="event.stopPropagation()">
-                    <div class="ads-panel">
-                        <!-- Header -->
-                        <div class="ads-panel-header">
-                            <div class="ads-logo"><img src="./img/sitio/logo.jpg" /></div>
-                            <div>
-                                <div class="ads-panel-title">Anuncios</div>
-                                <div class="ads-panel-subtitle">Publicidad en Monteverde</div>
-                            </div>
-                        </div>
-                        <div class="ads-iframe-wrapper">
-                            <!--Anuncios-->
-                        </div>
-                    </div>
-                </div>
-                <!-- /PANTALLA IZQUIERDA -->
-
                 <!-- ══════════ PANTALLA CENTRAL: Home Screen ══════════ -->
                 <div class="screen-panel home-screen" id="panelHome">
 
@@ -1022,12 +1045,10 @@
                     <div class="apps-grid" id="appsGrid">
                         <!-- Carpeta: Comida -->
                         <div class="folder-item" onclick="openFolder('comida', this)">
-                            <div class="folder-icon">🍴
+                            <div class="folder-icon comida">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">☕</div>
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🍽️</div>
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"></div>
-                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">☕</div>
+                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🍽️</div>
                                 </div>
                             </div>
                             <div class="folder-label">Comida</div>
@@ -1035,12 +1056,10 @@
 
                         <!-- Carpeta: Descanso -->
                         <div class="folder-item" onclick="openFolder('descanso', this)">
-                            <div class="folder-icon">🏖️
+                            <div class="folder-icon descanso">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🏨</div>
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);">🧘</div>
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"></div>
-                                    <div class="preview-app" style="background: rgba(107, 191, 160, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🏨</div>
+                                    <div class="preview-app" style="background: rgba(74, 144, 117, 0.6);">🧘</div>
                                 </div>
                             </div>
                             <div class="folder-label">Descanso</div>
@@ -1048,12 +1067,10 @@
 
                         <!-- Carpeta: Servicios -->
                         <div class="folder-item" onclick="openFolder('servicios', this)">
-                            <div class="folder-icon">🔧
+                            <div class="folder-icon servicios">
                                 <div class="folder-preview">
                                     <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">✂️</div>
                                     <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);">🚗</div>
-                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"></div>
-                                    <div class="preview-app" style="background: rgba(90, 138, 117, 0.6);"></div>
                                 </div>
                             </div>
                             <div class="folder-label">Servicios</div>
@@ -1061,31 +1078,28 @@
 
                         <!-- Carpeta: Salud -->
                         <div class="folder-item" onclick="openFolder('salud', this)">
-                            <div class="folder-icon" style="background: linear-gradient(135deg, #e06666 0%, #f08888 100%);">
-                                🏥
+                            <div class="folder-icon salud">
                                 <div class="folder-preview">
-                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);">🏨</div>
-                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);">💊</div>
-                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);"></div>
-                                    <div class="preview-app" style="background: rgba(224, 102, 102, 0.6);"></div>
+                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);">🏨</div>
+                                    <div class="preview-app" style="background: rgba(143, 191, 169, 0.6);">💊</div>
                                 </div>
                             </div>
                             <div class="folder-label">Salud</div>
                         </div>
-                    </div>
-                    <!-- /Apps -->
 
-                    <!-- Modal para carpeta abierta -->
-                    <div class="folder-modal-overlay" id="folderModalOverlay" onclick="closeFolder()">
-                        <div class="folder-modal" id="folderModal" onclick="event.stopPropagation()">
-                            <div class="folder-modal-header">
-                                <div class="folder-modal-title" id="folderModalTitle">Carpeta</div>
-                                <button class="folder-close-btn" onclick="closeFolder()">✕</button>
+                        <!-- Carpeta: Compras -->
+                        <div class="folder-item" onclick="openFolder('compras', this)">
+                            <div class="folder-icon compras">
+                                <div class="folder-preview">
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">🎁</div>
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">🏬</div>
+                                    <div class="preview-app" style="background: rgba(112, 184, 163, 0.6);">👕</div>
+                                </div>
                             </div>
-                            <div class="folder-apps-list" id="folderAppsList"></div>
+                            <div class="folder-label">Compras</div>
                         </div>
                     </div>
-                    <!-- /Modal -->
+                    <!-- /Apps -->
 
                 </div>
                 <!-- /PANTALLA CENTRAL -->
@@ -1093,11 +1107,10 @@
                 <!-- ══════════ PANTALLA DERECHA: Información ══════════ -->
                 <div class="screen-panel" id="panelInfo">
                     <div style="padding: 20px;">
-                        <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: center;">Información</h2>
+                        <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: center;">Favoritos</h2>
                         <div style="background: rgba(74, 144, 117, 0.2); backdrop-filter: blur(20px); border-radius: 14px; border: 1px solid rgba(107, 191, 160, 0.3); padding: 16px; color: #8fbfa9; line-height: 1.6;">
                             <p style="margin-bottom: 12px;"><strong style="color: #fff;">Monteverde Cloud</strong></p>
-                            <p>Acceso rápido a todos los servicios y comercios del Monteverde Cloud.</p>
-                            <p style="margin-top: 12px; font-size: 12px; opacity: 0.8;">Desliza entre los paneles para explorar más opciones.</p>
+                            <p>Acceso rápido a todos los servicios y comercios de Monteverde.</p>
                         </div>
                     </div>
                 </div>
@@ -1110,9 +1123,8 @@
         <div class="dock-container">
             <!-- Indicadores de página ENCIMA del dock -->
             <div class="page-dots" id="pageDots">
-                <div class="page-dot" id="dot-0"></div>
-                <div class="page-dot active" id="dot-1"></div>
-                <div class="page-dot" id="dot-2"></div>
+                <div class="page-dot active" id="dot-0"></div>
+                <div class="page-dot" id="dot-1"></div>
             </div>
             <div class="dock">
                 <div class="app-item" onclick="launchApp('Noticias')">
@@ -1138,6 +1150,18 @@
         </div>
         <!-- /Dock inferior -->
 
+        <!-- Modal para carpeta abierta -->
+        <div class="folder-modal-overlay" id="folderModalOverlay" onclick="closeFolder()">
+            <div class="folder-modal" id="folderModal" onclick="event.stopPropagation()">
+                <div class="folder-modal-header">
+                    <div class="folder-modal-title" id="folderModalTitle">Carpeta</div>
+                    <button class="folder-close-btn" onclick="closeFolder()">✕</button>
+                </div>
+                <div class="folder-apps-list" id="folderAppsList"></div>
+            </div>
+        </div>
+        <!-- /Modal -->
+
     </div><!-- /mobileFrame -->
 
     <script>
@@ -1159,8 +1183,8 @@
         const slider = document.getElementById('screensSlider');
         const wrapper = document.getElementById('screensWrapper');
         const frame = document.getElementById('mobileFrame');
-        const totalPanels = 3;
-        let currentPanel = 1; // Comenzar en el panel central (Home)
+        const totalPanels = 2;
+        let currentPanel = 0; // Comenzar en el panel central (Home)
 
         function getPanelWidth() {
             // En desktop usa el ancho del frame (390px), en móvil el viewport
@@ -1184,7 +1208,7 @@
         }
 
         // Inicializar en panel central
-        goToPanel(1, false);
+        goToPanel(0, false);
 
         // ── Gestos de deslizamiento horizontal (touch y mouse) ──
         let panelTouchStartX = 0;
@@ -1195,7 +1219,7 @@
 
         // Paneles laterales con scroll: interceptar gestos verticales
         // para que el wrapper no bloquee el scroll nativo del panel
-        ['panelAds', 'panelInfo'].forEach(id => {
+        ['panelInfo'].forEach(id => {
             const panel = document.getElementById(id);
             let _startX = 0, _startY = 0;
             panel.addEventListener('touchstart', e => {
@@ -1447,6 +1471,11 @@
             salud: [
                 { name: 'Clínicas', icon: '🏥' },
                 { name: 'Farmacias', icon: '💊' }
+            ],
+            compras: [
+                { name: 'Souvenir', icon: '🎁' },
+                { name: 'Super Mercado', icon: '🏬' },
+                { name: 'Ropa', icon: '👕' }
             ]
         };
 
@@ -1454,7 +1483,8 @@
             comida: 'Comida',
             descanso: 'Descanso',
             servicios: 'Servicios',
-            salud: 'Salud'
+            salud: 'Salud',
+            compras: 'Compras'
         };
 
         function openFolder(folderId, folderElement) {
