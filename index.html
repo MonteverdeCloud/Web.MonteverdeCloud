@@ -14,18 +14,64 @@
             user-select: none;
         }
 
+        /* ── Desktop: fondo y centrado del frame ── */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #1a3c34;
             color: #e8f5f0;
             overflow: hidden;
             height: 100vh;
             width: 100vw;
             position: relative;
+            /* Fondo de escritorio */
+            background: radial-gradient(ellipse at 30% 40%, #0d2b23 0%, #071910 60%, #030d09 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Fondo con textura sutil */
-        body::before {
+        /* ── Contenedor tipo dispositivo móvil ── */
+        #mobileFrame {
+            position: relative;
+            width: 390px;
+            height: 844px;
+            max-height: 100vh;
+            border-radius: 44px;
+            overflow: hidden;
+            background-color: #1a3c34;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                0 0 0 10px #0a1f18,
+                0 0 0 11px rgba(255, 255, 255, 0.06),
+                0 40px 80px rgba(0, 0, 0, 0.7),
+                0 20px 40px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* En pantallas pequeñas (móvil real) el frame ocupa todo */
+        @media (max-width: 430px) {
+            body {
+                background: #1a3c34;
+                display: block;
+            }
+
+            #mobileFrame {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* Ajuste de altura en desktop si la pantalla es más corta */
+        @media (min-width: 431px) and (max-height: 880px) {
+            #mobileFrame {
+                height: calc(100vh - 36px);
+                border-radius: 36px;
+            }
+        }
+
+        /* Fondo con textura sutil – dentro del frame */
+        #mobileFrame::before {
             content: '';
             position: absolute;
             top: 0;
@@ -79,32 +125,45 @@
         .screens-wrapper {
             position: relative;
             z-index: 1;
-            height: calc(100vh - 40px);
+            height: calc(100% - 40px);
             overflow: hidden;
         }
 
         .screens-slider {
             display: flex;
-            width: 300%;
+            width: calc(390px * 3);
             height: 100%;
             transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: transform;
+        }
+
+        @media (max-width: 430px) {
+            .screens-slider {
+                width: 300vw;
+            }
         }
 
         .screens-slider.no-transition {
             transition: none;
         }
 
-        /* Cada pantalla ocupa 1/3 del slider = 100vw */
+        /* Cada pantalla ocupa 1/3 del slider = ancho del frame */
         .screen-panel {
-            width: calc(100vw);
+            width: 390px;
             height: 100%;
             flex-shrink: 0;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-x: hidden;
-            padding: 20px 20px 120px;
+            padding: 14px 18px 90px;
             scrollbar-width: none;
             -ms-overflow-style: none;
+        }
+
+        /* En móvil real, ancho 100% del viewport */
+        @media (max-width: 430px) {
+            .screen-panel {
+                width: 100vw;
+            }
         }
 
         .screen-panel::-webkit-scrollbar {
@@ -113,12 +172,10 @@
 
         /* ── Indicadores de página (page dots) ── */
         .page-dots {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
+            justify-content: center;
             gap: 8px;
+            padding: 6px 0 8px;
             z-index: 200;
             pointer-events: none;
         }
@@ -362,11 +419,11 @@
         .widget-container {
             width: 100%;
             max-width: 400px;
-            margin: 0 auto 30px;
+            margin: 0 auto 12px;
             background: rgba(74, 144, 117, 0.2);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 22px;
+            border-radius: 20px;
             border: 1px solid rgba(107, 191, 160, 0.3);
             overflow: hidden;
             position: relative;
@@ -378,11 +435,11 @@
         }
 
         .widget-header {
-            padding: 16px 20px 12px;
+            padding: 11px 16px 9px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
         .widget-content {
@@ -410,7 +467,7 @@
 
         /* Área del widget con una sola imagen visible */
         .widget-display {
-            height: 280px;
+            height: 175px;
             position: relative;
             overflow: hidden;
             margin: 0;
@@ -518,17 +575,17 @@
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 14px;
             max-width: 400px;
             margin: 0 auto;
-            padding-bottom: 100px;
+            padding-bottom: 0;
         }
 
         .app-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             cursor: pointer;
             transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -539,13 +596,13 @@
         }
 
         .app-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 22px;
             position: relative;
             overflow: hidden;
             box-shadow:
@@ -595,22 +652,22 @@
         }
 
         .app-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             color: #e8f5f0;
             text-align: center;
-            max-width: 70px;
+            max-width: 64px;
             line-height: 1.2;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* Dock inferior */
         .dock-container {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 14px 20px 20px;
+            padding: 10px 20px 14px;
             background: rgba(26, 60, 52, 0.85);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
@@ -621,14 +678,14 @@
         .dock {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 12px;
             max-width: 400px;
             margin: 0 auto;
         }
 
         /* Partículas */
         .particles {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -715,240 +772,265 @@
                 font-size: 24px;
             }
         }
+
+        /* ── Decoración de desktop: puntos de bokeh ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 15% 25%, rgba(74, 144, 117, 0.12) 0%, transparent 35%),
+                radial-gradient(circle at 85% 75%, rgba(107, 191, 160, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 50% 10%, rgba(26, 60, 52, 0.4) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 430px) {
+            body::after {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="particles" id="particles"></div>
+    <div id="mobileFrame">
 
-    <!-- Status Bar sin iconos de la derecha -->
-    <div class="status-bar">
-        <div class="time-section">
-            <div class="local-tag">Hora local</div>
-            <div class="time" id="clock">9:41</div>
+        <div class="particles" id="particles"></div>
+
+        <!-- Status Bar sin iconos de la derecha -->
+        <div class="status-bar">
+            <div class="time-section">
+                <div class="local-tag">Hora local</div>
+                <div class="time" id="clock">9:41</div>
+            </div>
+            <div></div> <!-- Espacio vacío para mantener el layout -->
         </div>
-        <div></div> <!-- Espacio vacío para mantener el layout -->
-    </div>
 
-    <!-- Indicadores de página (page dots) -->
-    <div class="page-dots" id="pageDots">
-        <div class="page-dot" id="dot-0"></div>
-        <div class="page-dot active" id="dot-1"></div>
-        <div class="page-dot" id="dot-2"></div>
-    </div>
+        <!-- Contenedor de 3 pantallas -->
+        <div class="screens-wrapper" id="screensWrapper">
+            <div class="screens-slider" id="screensSlider">
 
-    <!-- Contenedor de 3 pantallas -->
-    <div class="screens-wrapper" id="screensWrapper">
-        <div class="screens-slider" id="screensSlider">
-
-            <!-- ══════════ PANTALLA IZQUIERDA: Google Ads ══════════ -->
-            <div class="screen-panel" id="panelAds">
-                <div class="ads-panel">
-                    <!-- Header -->
-                    <div class="ads-panel-header">
-                        <div class="ads-logo">🅶</div>
-                        <div>
-                            <div class="ads-panel-title">Anuncios</div>
-                            <div class="ads-panel-subtitle">Publicidad en Monteverde</div>
-                        </div>
-                    </div>
-
-                    <!-- Ad 1 -->
-                    <div class="ad-card">
-                        <img class="ad-card-image"
-                            src="https://images.unsplash.com/photo-1511367732-b9483c1222e4?w=600&h=320&fit=crop"
-                            alt="Hotel en Monteverde">
-                        <div class="ad-card-body">
-                            <div class="ad-badge">📢 Anuncio</div>
-                            <div class="ad-title">Hotel Vista Verde</div>
-                            <div class="ad-desc">Disfruta de una experiencia única rodeado del bosque nuboso. Reserva
-                                ahora y obtén 20% de descuento.</div>
-                            <a href="#" class="ad-cta">Reservar ahora</a>
-                        </div>
-                    </div>
-
-                    <!-- Ad 2 -->
-                    <div class="ad-card">
-                        <img class="ad-card-image"
-                            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=320&fit=crop"
-                            alt="Restaurante">
-                        <div class="ad-card-body">
-                            <div class="ad-badge">📢 Anuncio</div>
-                            <div class="ad-title">Soda El Colibrí</div>
-                            <div class="ad-desc">Cocina típica costarricense con ingredientes locales frescos.
-                                ¡Visítanos en el centro de Monteverde!</div>
-                            <a href="#" class="ad-cta">Ver menú</a>
-                        </div>
-                    </div>
-
-                    <!-- Ad 3 -->
-                    <div class="ad-card">
-                        <img class="ad-card-image"
-                            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=320&fit=crop"
-                            alt="Tour">
-                        <div class="ad-card-body">
-                            <div class="ad-badge">📢 Anuncio</div>
-                            <div class="ad-title">Canopy Sky Adventures</div>
-                            <div class="ad-desc">Los mejores tours de canopy de Costa Rica. Vuela sobre el bosque nuboso
-                                y vive la emoción.</div>
-                            <a href="#" class="ad-cta">Más información</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /PANTALLA IZQUIERDA -->
-
-            <!-- ══════════ PANTALLA CENTRAL: Home Screen ══════════ -->
-            <div class="screen-panel home-screen" id="panelHome">
-
-                <!-- Widget de carrusel -->
-                <div class="widget-container">
-                    <div class="widget-header">
-                        <div class="widget-title">Destacado</div>
-                        <div class="scroll-indicator" id="scrollIndicator">
-                            <div class="scroll-dot active" onclick="selectImage(0)"></div>
-                            <div class="scroll-dot" onclick="selectImage(1)"></div>
-                            <div class="scroll-dot" onclick="selectImage(2)"></div>
-                            <div class="scroll-dot" onclick="selectImage(3)"></div>
-                        </div>
-                    </div>
-
-                    <div class="widget-content">
-                        <div class="widget-display" id="widgetDisplay">
-                            <div class="widget-image-card active" data-index="0">
-                                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
-                                    alt="Bosque nuboso">
-                                <div class="widget-image-overlay">
-                                    <div class="widget-image-title">Reserva Natural</div>
-                                    <div class="widget-image-subtitle">Monteverde, Costa Rica</div>
-                                </div>
+                <!-- ══════════ PANTALLA IZQUIERDA: Anuncios ══════════ -->
+                <div class="screen-panel" id="panelAds" onTouchStart="event.stopPropagation()">
+                    <div class="ads-panel">
+                        <!-- Header -->
+                        <div class="ads-panel-header">
+                            <div class="ads-logo">🅶</div>
+                            <div>
+                                <div class="ads-panel-title">Anuncios</div>
+                                <div class="ads-panel-subtitle">Publicidad en Monteverde</div>
                             </div>
-                            <div class="widget-image-card" data-index="1">
-                                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&h=400&fit=crop"
-                                    alt="Niebla">
-                                <div class="widget-image-overlay">
-                                    <div class="widget-image-title">Nebulosa Matutina</div>
-                                    <div class="widget-image-subtitle">6:00 AM - Sendero</div>
-                                </div>
+                        </div>
+
+                        <!-- Ad 1 -->
+                        <div class="ad-card">
+                            <img class="ad-card-image"
+                                src="https://images.unsplash.com/photo-1511367732-b9483c1222e4?w=600&h=320&fit=crop"
+                                alt="Hotel en Monteverde">
+                            <div class="ad-card-body">
+                                <div class="ad-badge">📢 Anuncio</div>
+                                <div class="ad-title">Hotel Vista Verde</div>
+                                <div class="ad-desc">Disfruta de una experiencia única rodeado del bosque nuboso.
+                                    Reserva
+                                    ahora y obtén 20% de descuento.</div>
+                                <a href="#" class="ad-cta">Reservar ahora</a>
                             </div>
-                            <div class="widget-image-card" data-index="2">
-                                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&h=400&fit=crop"
-                                    alt="Puente colgante">
-                                <div class="widget-image-overlay">
-                                    <div class="widget-image-title">Puentes Colgantes</div>
-                                    <div class="widget-image-subtitle">Aventura en la canopy</div>
-                                </div>
+                        </div>
+
+                        <!-- Ad 2 -->
+                        <div class="ad-card">
+                            <img class="ad-card-image"
+                                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=320&fit=crop"
+                                alt="Restaurante">
+                            <div class="ad-card-body">
+                                <div class="ad-badge">📢 Anuncio</div>
+                                <div class="ad-title">Soda El Colibrí</div>
+                                <div class="ad-desc">Cocina típica costarricense con ingredientes locales frescos.
+                                    ¡Visítanos en el centro de Monteverde!</div>
+                                <a href="#" class="ad-cta">Ver menú</a>
                             </div>
-                            <div class="widget-image-card" data-index="3">
-                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop"
-                                    alt="Montañas">
-                                <div class="widget-image-overlay">
-                                    <div class="widget-image-title">Cordillera</div>
-                                    <div class="widget-image-subtitle">Vista panorámica</div>
-                                </div>
+                        </div>
+
+                        <!-- Ad 3 -->
+                        <div class="ad-card">
+                            <img class="ad-card-image"
+                                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=320&fit=crop"
+                                alt="Tour">
+                            <div class="ad-card-body">
+                                <div class="ad-badge">📢 Anuncio</div>
+                                <div class="ad-title">Canopy Sky Adventures</div>
+                                <div class="ad-desc">Los mejores tours de canopy de Costa Rica. Vuela sobre el bosque
+                                    nuboso
+                                    y vive la emoción.</div>
+                                <a href="#" class="ad-cta">Más información</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /Widget de carrusel -->
+                <!-- /PANTALLA IZQUIERDA -->
 
-                <!-- Apps -->
-                <div class="apps-grid" id="appsGrid">
-                    <div class="app-item" data-app="Cafetería" data-icon="☕" data-class="app-cafeteria"
-                        onclick="launchApp('Cafetería')">
-                        <div class="app-icon app-cafeteria">☕</div>
-                        <div class="app-label">Cafetería</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                    <div class="app-item" data-app="Restaurante" data-icon="🍽️" data-class="app-cafeteria"
-                        onclick="launchApp('Restaurante')">
-                        <div class="app-icon app-cafeteria">🍽️</div>
-                        <div class="app-label">Restaurante</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                    <div class="app-item" data-app="Reserva" data-icon="🌲" data-class="app-spa"
-                        onclick="launchApp('Reserva')">
-                        <div class="app-icon app-spa">🌲</div>
-                        <div class="app-label">Reserva</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                    <div class="app-item" data-app="Spa" data-icon="🧘" data-class="app-spa" onclick="launchApp('Spa')">
-                        <div class="app-icon app-spa">🧘</div>
-                        <div class="app-label">Spa</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                    <div class="app-item" data-app="Barbería" data-icon="✂️" data-class="app-barberia"
-                        onclick="launchApp('Barbería')">
-                        <div class="app-icon app-barberia">✂️</div>
-                        <div class="app-label">Barbería</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                    <div class="app-item" data-app="Transporte" data-icon="🚗" data-class="app-transporte"
-                        onclick="launchApp('Transporte')">
-                        <div class="app-icon app-transporte">🚗</div>
-                        <div class="app-label">Transporte</div>
-                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
-                    </div>
-                </div>
-                <!-- /Apps -->
+                <!-- ══════════ PANTALLA CENTRAL: Home Screen ══════════ -->
+                <div class="screen-panel home-screen" id="panelHome">
 
-            </div>
-            <!-- /PANTALLA CENTRAL -->
+                    <!-- Widget de carrusel -->
+                    <div class="widget-container">
+                        <div class="widget-header">
+                            <div class="widget-title">Destacado</div>
+                            <div class="scroll-indicator" id="scrollIndicator">
+                                <div class="scroll-dot active" onclick="selectImage(0)"></div>
+                                <div class="scroll-dot" onclick="selectImage(1)"></div>
+                                <div class="scroll-dot" onclick="selectImage(2)"></div>
+                                <div class="scroll-dot" onclick="selectImage(3)"></div>
+                            </div>
+                        </div>
 
-            <!-- ══════════ PANTALLA DERECHA: Favoritos ══════════ -->
-            <div class="screen-panel" id="panelFavorites">
-                <div class="favorites-panel">
-                    <!-- Header -->
-                    <div class="fav-panel-header">
-                        <div class="fav-panel-icon">⭐</div>
-                        <div>
-                            <div class="fav-panel-title">Favoritos</div>
-                            <div class="fav-panel-subtitle">Tus accesos rápidos</div>
+                        <div class="widget-content">
+                            <div class="widget-display" id="widgetDisplay">
+                                <div class="widget-image-card active" data-index="0">
+                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
+                                        alt="Bosque nuboso">
+                                    <div class="widget-image-overlay">
+                                        <div class="widget-image-title">Reserva Natural</div>
+                                        <div class="widget-image-subtitle">Monteverde, Costa Rica</div>
+                                    </div>
+                                </div>
+                                <div class="widget-image-card" data-index="1">
+                                    <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&h=400&fit=crop"
+                                        alt="Niebla">
+                                    <div class="widget-image-overlay">
+                                        <div class="widget-image-title">Nebulosa Matutina</div>
+                                        <div class="widget-image-subtitle">6:00 AM - Sendero</div>
+                                    </div>
+                                </div>
+                                <div class="widget-image-card" data-index="2">
+                                    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&h=400&fit=crop"
+                                        alt="Puente colgante">
+                                    <div class="widget-image-overlay">
+                                        <div class="widget-image-title">Puentes Colgantes</div>
+                                        <div class="widget-image-subtitle">Aventura en la canopy</div>
+                                    </div>
+                                </div>
+                                <div class="widget-image-card" data-index="3">
+                                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop"
+                                        alt="Montañas">
+                                    <div class="widget-image-overlay">
+                                        <div class="widget-image-title">Cordillera</div>
+                                        <div class="widget-image-subtitle">Vista panorámica</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- /Widget de carrusel -->
 
-                    <!-- Contenido de favoritos (se llena dinámicamente) -->
-                    <div id="favoritesContent">
-                        <div class="fav-empty" id="favEmpty">
-                            <div class="fav-empty-icon">⭐</div>
-                            <div class="fav-empty-text">Aún no tienes favoritos.<br>Mantén presionado un ícono en la
-                                pantalla principal para agregarlo.</div>
+                    <!-- Apps -->
+                    <div class="apps-grid" id="appsGrid">
+                        <div class="app-item" data-app="Cafetería" data-icon="☕" data-class="app-cafeteria"
+                            onclick="launchApp('Cafetería')">
+                            <div class="app-icon app-cafeteria">☕</div>
+                            <div class="app-label">Cafetería</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
                         </div>
-                        <div class="fav-grid" id="favGrid" style="display:none"></div>
+                        <div class="app-item" data-app="Restaurante" data-icon="🍽️" data-class="app-cafeteria"
+                            onclick="launchApp('Restaurante')">
+                            <div class="app-icon app-cafeteria">🍽️</div>
+                            <div class="app-label">Restaurante</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                        </div>
+                        <div class="app-item" data-app="Reserva" data-icon="🌲" data-class="app-spa"
+                            onclick="launchApp('Reserva')">
+                            <div class="app-icon app-spa">🌲</div>
+                            <div class="app-label">Reserva</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                        </div>
+                        <div class="app-item" data-app="Spa" data-icon="🧘" data-class="app-spa"
+                            onclick="launchApp('Spa')">
+                            <div class="app-icon app-spa">🧘</div>
+                            <div class="app-label">Spa</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                        </div>
+                        <div class="app-item" data-app="Barbería" data-icon="✂️" data-class="app-barberia"
+                            onclick="launchApp('Barbería')">
+                            <div class="app-icon app-barberia">✂️</div>
+                            <div class="app-label">Barbería</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                        </div>
+                        <div class="app-item" data-app="Transporte" data-icon="🚗" data-class="app-transporte"
+                            onclick="launchApp('Transporte')">
+                            <div class="app-icon app-transporte">🚗</div>
+                            <div class="app-label">Transporte</div>
+                            <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                        </div>
+                    </div>
+                    <!-- /Apps -->
+
+                </div>
+                <!-- /PANTALLA CENTRAL -->
+
+                <!-- ══════════ PANTALLA DERECHA: Favoritos ══════════ -->
+                <div class="screen-panel" id="panelFavorites">
+                    <div class="favorites-panel">
+                        <!-- Header -->
+                        <div class="fav-panel-header">
+                            <div class="fav-panel-icon">⭐</div>
+                            <div>
+                                <div class="fav-panel-title">Favoritos</div>
+                                <div class="fav-panel-subtitle">Tus accesos rápidos</div>
+                            </div>
+                        </div>
+
+                        <!-- Contenido de favoritos (se llena dinámicamente) -->
+                        <div id="favoritesContent">
+                            <div class="fav-empty" id="favEmpty">
+                                <div class="fav-empty-icon">⭐</div>
+                                <div class="fav-empty-text">Aún no tienes favoritos.<br>Mantén presionado un ícono en la
+                                    pantalla principal para agregarlo.</div>
+                            </div>
+                            <div class="fav-grid" id="favGrid" style="display:none"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- /PANTALLA DERECHA -->
+                <!-- /PANTALLA DERECHA -->
 
-        </div>
-    </div>
-
-    <!-- Dock inferior -->
-    <div class="dock-container">
-        <div class="dock">
-            <div class="app-item" onclick="launchApp('Noticias')">
-                <div class="app-icon app-noticias">📰</div>
-                <div class="app-label">Noticias</div>
-            </div>
-
-            <div class="app-item" onclick="launchApp('Facebook')">
-                <div class="app-icon app-facebook">📘</div>
-                <div class="app-label">Contactanos</div>
-            </div>
-
-            <div class="app-item" onclick="launchApp('Instagram')">
-                <div class="app-icon app-instagram">📬</div>
-                <div class="app-label">Sugerencias</div>
-            </div>
-
-            <div class="app-item" onclick="launchApp('Agregar comercio')">
-                <div class="app-icon app-agregar">➕</div>
-                <div class="app-label">Agregar comercio</div>
             </div>
         </div>
-    </div>
-    <!-- /Dock inferior -->
+
+        <!-- Dock inferior -->
+        <div class="dock-container">
+            <!-- Indicadores de página ENCIMA del dock -->
+            <div class="page-dots" id="pageDots">
+                <div class="page-dot" id="dot-0"></div>
+                <div class="page-dot active" id="dot-1"></div>
+                <div class="page-dot" id="dot-2"></div>
+            </div>
+            <div class="dock">
+                <div class="app-item" onclick="launchApp('Noticias')">
+                    <div class="app-icon app-noticias">📰</div>
+                    <div class="app-label">Noticias</div>
+                </div>
+
+                <div class="app-item" onclick="launchApp('Facebook')">
+                    <div class="app-icon app-facebook">📘</div>
+                    <div class="app-label">Contactanos</div>
+                </div>
+
+                <div class="app-item" onclick="launchApp('Instagram')">
+                    <div class="app-icon app-instagram">📬</div>
+                    <div class="app-label">Sugerencias</div>
+                </div>
+
+                <div class="app-item" onclick="launchApp('Agregar comercio')">
+                    <div class="app-icon app-agregar">➕</div>
+                    <div class="app-label">Agregar comercio</div>
+                </div>
+            </div>
+        </div>
+        <!-- /Dock inferior -->
+
+    </div><!-- /mobileFrame -->
 
     <script>
         // ══════════════════════════════════════════
@@ -968,14 +1050,21 @@
         // ══════════════════════════════════════════
         const slider = document.getElementById('screensSlider');
         const wrapper = document.getElementById('screensWrapper');
+        const frame = document.getElementById('mobileFrame');
         const totalPanels = 3;
         let currentPanel = 1; // Comenzar en el panel central (Home)
+
+        function getPanelWidth() {
+            // En desktop usa el ancho del frame (390px), en móvil el viewport
+            return frame.getBoundingClientRect().width;
+        }
 
         function goToPanel(index, animate = true) {
             if (index < 0 || index >= totalPanels) return;
             currentPanel = index;
             if (!animate) slider.classList.add('no-transition');
-            slider.style.transform = `translateX(-${index * (100 / totalPanels)}%)`;
+            const panelWidth = getPanelWidth();
+            slider.style.transform = `translateX(-${index * panelWidth}px)`;
             if (!animate) requestAnimationFrame(() => slider.classList.remove('no-transition'));
             updatePageDots();
         }
@@ -996,6 +1085,24 @@
         let dragStartX = 0;
         let isHorizontalSwipe = null;
 
+        // Paneles laterales con scroll: interceptar gestos verticales
+        // para que el wrapper no bloquee el scroll nativo del panel
+        ['panelAds', 'panelFavorites'].forEach(id => {
+            const panel = document.getElementById(id);
+            let _startX = 0, _startY = 0;
+            panel.addEventListener('touchstart', e => {
+                _startX = e.touches[0].clientX;
+                _startY = e.touches[0].clientY;
+            }, { passive: true });
+            panel.addEventListener('touchmove', e => {
+                const dx = Math.abs(e.touches[0].clientX - _startX);
+                const dy = Math.abs(e.touches[0].clientY - _startY);
+                // Si el gesto es más vertical que horizontal, detener burbuja
+                // para que el wrapper no lo clasifique como swipe horizontal
+                if (dy > dx) e.stopPropagation();
+            }, { passive: true });
+        });
+
         wrapper.addEventListener('touchstart', (e) => {
             panelTouchStartX = e.touches[0].clientX;
             panelTouchStartY = e.touches[0].clientY;
@@ -1014,7 +1121,8 @@
         wrapper.addEventListener('touchend', (e) => {
             if (!isHorizontalSwipe) return;
             const diff = panelTouchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) {
+            const threshold = getPanelWidth() * 0.13;
+            if (Math.abs(diff) > threshold) {
                 goToPanel(diff > 0 ? Math.min(currentPanel + 1, totalPanels - 1) : Math.max(currentPanel - 1, 0));
             }
         }, { passive: true });
