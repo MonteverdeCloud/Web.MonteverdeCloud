@@ -3,838 +3,1256 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monteverde Cloud — Conecta turistas y comercios de Monteverde</title>
-    <meta name="description"
-        content="Monteverde Cloud conecta turistas y locales con los mejores comercios y servicios de Monteverde (Costa Rica). Plataforma digital moderna y fácil de usar para descubrir y apoyar negocios locales.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://monteverdecloud.com/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <meta property="og:site_name" content="Monteverde Cloud">
-    <meta property="og:title" content="Monteverde Cloud — Conecta turistas y comercios de Monteverde">
-    <meta property="og:description"
-        content="Conectamos turistas y locales con los mejores comercios y servicios de Monteverde. Plataforma moderna y fácil de usar.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://monteverdecloud.com/">
-    <meta property="og:image"
-        content="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80">
-    <meta property="og:locale" content="es_CR">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Monteverde Cloud — Conecta turistas y comercios de Monteverde">
-    <meta name="twitter:description"
-        content="Conectamos turistas y locales con los mejores comercios y servicios de Monteverde. Plataforma moderna y fácil de usar.">
-    <meta name="twitter:image"
-        content="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "name": "Monteverde Cloud",
-                    "url": "https://monteverdecloud.com/",
-                    "logo": "https://monteverdecloud.com/logo.png",
-                    "sameAs": []
-                },
-                {
-                    "@type": "WebSite",
-                    "url": "https://monteverdecloud.com/",
-                    "name": "Monteverde Cloud",
-                    "description": "Monteverde Cloud conecta turistas y locales con los mejores comercios y servicios de Monteverde (Costa Rica).",
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": "https://monteverdecloud.com/?s={search_term_string}",
-                        "query-input": "required name=search_term_string"
-                    }
-                }
-            ]
-        }
-        </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Monteverde Cloud - Inicio</title>
     <style>
-        :root {
-            --primary-green: #2e7d32;
-            --light-green: #4caf50;
-            --dark-green: #1b5e20;
-            --sky-blue: #87ceeb;
-            --light-blue: #e1f5fe;
-            --white: #ffffff;
-            --light-gray: #f5f5f5;
-            --text-dark: #333333;
-            --text-light: #666666;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--white);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1a3c34;
+            color: #e8f5f0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: var(--dark-green);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-            color: var(--white);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
+        /* Fondo con textura sutil */
+        body::before {
+            content: '';
+            position: absolute;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(74, 144, 117, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(107, 191, 160, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .header-container {
+        /* Status Bar simulada */
+        .status-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 12px 24px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
         }
 
-        .logo {
+        .status-bar .time-section {
             display: flex;
             align-items: center;
+            gap: 8px;
         }
 
-        .logo h1 {
-            font-size: 1.8rem;
-            color: var(--white);
-            margin-left: 10px;
+        .status-bar .time {
+            letter-spacing: 0.5px;
+            font-variant-numeric: tabular-nums;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
+        .local-tag {
+            font-size: 10px;
             font-weight: 500;
+            color: #8fbfa9;
+            background: rgba(74, 144, 117, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(107, 191, 160, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenedor de pantallas (slider horizontal) */
+        .screens-wrapper {
+            position: relative;
+            z-index: 1;
+            height: calc(100vh - 40px);
+            overflow: hidden;
+        }
+
+        .screens-slider {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .screens-slider.no-transition {
+            transition: none;
+        }
+
+        /* Cada pantalla ocupa 1/3 del slider = 100vw */
+        .screen-panel {
+            width: calc(100vw);
+            height: 100%;
+            flex-shrink: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px 20px 120px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .screen-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ── Indicadores de página (page dots) ── */
+        .page-dots {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        .page-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
             transition: all 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: var(--sky-blue);
+        .page-dot.active {
+            background: #ffffff;
+            width: 22px;
+            border-radius: 4px;
         }
 
-        .language-selector {
+        /* ── Panel IZQUIERDO – Google Ads ── */
+        .ads-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .ads-panel-header {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
-        .language-selector:hover {
-            background: rgba(255, 255, 255, 0.25);
+        .ads-panel-header .ads-logo {
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
 
-        .language-option {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+        .ads-panel-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
         }
 
-        .language-option.active {
-            background: var(--white);
-            color: var(--primary-green);
-            font-weight: 500;
+        .ads-panel-subtitle {
+            font-size: 11px;
+            color: #8fbfa9;
         }
 
-        .btn {
+        .ad-card {
+            background: rgba(74, 144, 117, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(107, 191, 160, 0.25);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ad-card:active {
+            transform: scale(0.97);
+        }
+
+        .ad-card-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .ad-card-body {
+            padding: 14px 16px 16px;
+        }
+
+        .ad-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #4a9075;
+            background: rgba(107, 191, 160, 0.15);
+            border: 1px solid rgba(107, 191, 160, 0.3);
+            border-radius: 6px;
+            padding: 2px 8px;
+            margin-bottom: 8px;
+        }
+
+        .ad-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .ad-desc {
+            font-size: 12px;
+            color: #8fbfa9;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .ad-cta {
             display: inline-block;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #4a9075, #6bbfa0);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(74, 144, 117, 0.4);
+            transition: opacity 0.2s;
+        }
+
+        .ad-cta:hover {
+            opacity: 0.85;
+        }
+
+        /* ── Panel DERECHO – Favoritos ── */
+        .favorites-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .fav-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .fav-panel-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #ffb347, #ff6b35);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .fav-panel-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .fav-panel-subtitle {
+            font-size: 11px;
+            color: #8fbfa9;
+        }
+
+        .fav-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(74, 144, 117, 0.1);
+            border: 1px dashed rgba(107, 191, 160, 0.25);
+            border-radius: 18px;
+        }
+
+        .fav-empty-icon {
+            font-size: 42px;
+            opacity: 0.5;
+        }
+
+        .fav-empty-text {
+            font-size: 13px;
+            color: #8fbfa9;
+            line-height: 1.5;
+        }
+
+        .fav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Botón de favorito en app-icon */
+        .app-item {
+            position: relative;
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 20px;
+            height: 20px;
+            background: rgba(26, 60, 52, 0.9);
+            border-radius: 50%;
+            border: 1.5px solid rgba(107, 191, 160, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
             cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s ease;
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .btn-primary {
-            background-color: var(--sky-blue);
-            color: var(--dark-green);
+        .app-item:hover .fav-btn,
+        .app-item.show-fav .fav-btn {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .btn-service {
-            float: right;
-            margin: 10px;
+        .fav-btn.is-fav {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            background: linear-gradient(135deg, #ffb347, #ff6b35);
+            border-color: transparent;
         }
 
-        .btn-primary:hover {
-            background-color: var(--white);
-            transform: translateY(-2px);
+        .fav-btn:hover {
+            transform: scale(1.2);
         }
 
-        .btn-outline {
-            border: 2px solid var(--white);
-            color: var(--white);
+        /* Widget de imágenes rectangular */
+        .widget-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            background: rgba(74, 144, 117, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
+            border: 1px solid rgba(107, 191, 160, 0.3);
+            overflow: hidden;
+            position: relative;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary-green);
+        .widget-header {
+            padding: 16px 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
+        .widget-content {
+            position: relative;
+            flex: 1;
+        }
+
+        .widget-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .widget-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #6bbfa0;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(107, 191, 160, 0.6);
+        }
+
+        /* Área del widget con una sola imagen visible */
+        .widget-display {
+            height: 280px;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            color: var(--white);
-            text-align: center;
+            margin: 0;
+            border-radius: 0;
+            background: rgba(26, 60, 52, 0.6);
+            border: none;
+            flex: 1;
+            width: 100%;
         }
 
-        .hero-bg {
+        .widget-image-card {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .widget-image-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 1;
+            pointer-events: auto;
+        }
+
+        .widget-image-card.direction-left {
+            transform: translateX(-100%);
+        }
+
+        .widget-image-card.direction-right {
+            transform: translateX(100%);
+        }
+
+        .widget-image-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            z-index: 0;
-            filter: brightness(0.55);
         }
 
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-
-        .section-title h2::after {
-            content: '';
+        .widget-image-overlay {
             position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--light-green);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-img {
-            height: 200px;
-            background-color: var(--light-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 3rem;
-        }
-
-        .service-content {
+            left: 0;
+            right: 0;
             padding: 20px;
+            background: linear-gradient(to top, rgba(26, 60, 52, 0.9), transparent);
         }
 
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .widget-image-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
         }
 
-        /* Map Section */
-        .map-section {
-            padding: 80px 0;
-            background: linear-gradient(to bottom, var(--light-blue), var(--white));
+        .widget-image-subtitle {
+            font-size: 13px;
+            color: #8fbfa9;
         }
 
-        .map-container {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-            height: 450px;
-            background-color: var(--light-green);
+        /* Indicador de progreso automático */
+        .auto-progress {
+            display: none;
+        }
+
+        /* Indicadores de imagen */
+        .scroll-indicator {
+            position: relative;
             display: flex;
-            align-items: center;
+            flex-direction: row;
             justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background-color: var(--white);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        .feature h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .cta h2 {
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 30px;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 50px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-column h3 {
-            color: var(--sky-blue);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--sky-blue);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            gap: 6px;
+            padding: 0;
+            background: transparent;
+            z-index: 5;
+            margin-left: auto;
+        }
+
+        .scroll-dot {
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            color: var(--white);
+            background: rgba(143, 191, 169, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .scroll-dot.active {
+            background: #6bbfa0;
+            height: 18px;
+            border-radius: 3px;
+        }
+
+        .scroll-dot:hover {
+            background: rgba(143, 191, 169, 0.7);
+        }
+
+        /* Grid de aplicaciones */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .app-item:active {
+            transform: scale(0.88);
+            opacity: 0.8;
+        }
+
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
-            background-color: var(--sky-blue);
-            transform: translateY(-3px);
+        .app-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+            pointer-events: none;
         }
 
-        .copyright {
+        .app-barberia {
+            background: linear-gradient(135deg, #4a9075 0%, #1a3c34 100%);
+        }
+
+        .app-spa {
+            background: linear-gradient(135deg, #6bbfa0 0%, #4a9075 100%);
+        }
+
+        .app-transporte {
+            background: linear-gradient(135deg, #5a8a75 0%, #1a3c34 100%);
+        }
+
+        .app-facebook {
+            background: linear-gradient(135deg, #1877f2 0%, #0d5cb6 100%);
+        }
+
+        .app-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .app-noticias {
+            background: linear-gradient(135deg, #8fbfa9 0%, #4a9075 100%);
+        }
+
+        .app-agregar {
+            background: rgba(74, 144, 117, 0.3);
+            border: 2px dashed rgba(107, 191, 160, 0.5);
+        }
+
+        .app-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #e8f5f0;
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: var(--text-light);
+            max-width: 70px;
+            line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
+        /* Dock inferior */
+        .dock-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 14px 20px 20px;
+            background: rgba(26, 60, 52, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(107, 191, 160, 0.2);
+            z-index: 100;
+        }
+
+        .dock {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(107, 191, 160, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
             }
 
-            nav ul {
-                margin-top: 15px;
-                justify-content: center;
-                flex-wrap: wrap;
+            10% {
+                opacity: 1;
             }
 
-            nav ul li {
-                margin: 5px 10px;
+            90% {
+                opacity: 1;
             }
 
-            .hero h2 {
-                font-size: 2.2rem;
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes appEnter {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
             }
 
-            .hero p {
-                font-size: 1rem;
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .app-item {
+            animation: appEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        .app-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .app-item:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .app-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .app-item:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        @media (max-width: 380px) {
+
+            .apps-grid,
+            .dock {
+                gap: 15px;
+            }
+
+            .app-icon {
+                width: 58px;
+                height: 58px;
+                font-size: 24px;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-cloud logo-icon"></i>
-                <h1>Monteverde Cloud</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#" data-i18n="nav.home">Inicio</a></li>
-                    <!-- <li><a href="#" data-i18n="nav.services">Servicios</a></li>
-                    <li><a href="#" data-i18n="nav.map">Mapa</a></li>
-                    <li><a href="#" data-i18n="nav.businesses">Comercios</a></li>
-                    <li><a href="#" data-i18n="nav.contact">Contacto</a></li> -->
-                    <li>
-                        <div class="language-selector" id="languageSelector">
-                            <div class="language-option active" data-lang="es">ES</div>
-                            <div class="language-option" data-lang="en">EN</div>
+
+    <div class="particles" id="particles"></div>
+
+    <!-- Status Bar sin iconos de la derecha -->
+    <div class="status-bar">
+        <div class="time-section">
+            <div class="local-tag">Hora local</div>
+            <div class="time" id="clock">9:41</div>
+        </div>
+        <div></div> <!-- Espacio vacío para mantener el layout -->
+    </div>
+
+    <!-- Indicadores de página (page dots) -->
+    <div class="page-dots" id="pageDots">
+        <div class="page-dot" id="dot-0"></div>
+        <div class="page-dot active" id="dot-1"></div>
+        <div class="page-dot" id="dot-2"></div>
+    </div>
+
+    <!-- Contenedor de 3 pantallas -->
+    <div class="screens-wrapper" id="screensWrapper">
+        <div class="screens-slider" id="screensSlider">
+
+            <!-- ══════════ PANTALLA IZQUIERDA: Google Ads ══════════ -->
+            <div class="screen-panel" id="panelAds">
+                <div class="ads-panel">
+                    <!-- Header -->
+                    <div class="ads-panel-header">
+                        <div class="ads-logo">🅶</div>
+                        <div>
+                            <div class="ads-panel-title">Anuncios</div>
+                            <div class="ads-panel-subtitle">Publicidad en Monteverde</div>
                         </div>
-                    </li>
-                </ul>
-            </nav>
-            <!-- <a href="#" class="btn btn-outline" data-i18n="nav.register">Registrarse</a> -->
-        </div>
-    </header>
+                    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img class="hero-bg" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80" alt="Bosque nuboso de Monteverde, Costa Rica" loading="lazy" decoding="async">
-        <div class="container">
-            <h2 data-i18n="hero.title">Descubre Monteverde de forma digital</h2>
-            <p data-i18n="hero.description">Conectamos turistas y locales con los mejores comercios y servicios de la
-                zona a través de una plataforma moderna y fácil de usar.</p>
-            <!-- <a href="#" class="btn btn-primary" data-i18n="hero.button">Explorar servicios</a> -->
-        </div>
-    </section>
+                    <!-- Ad 1 -->
+                    <div class="ad-card">
+                        <img class="ad-card-image"
+                            src="https://images.unsplash.com/photo-1511367732-b9483c1222e4?w=600&h=320&fit=crop"
+                            alt="Hotel en Monteverde">
+                        <div class="ad-card-body">
+                            <div class="ad-badge">📢 Anuncio</div>
+                            <div class="ad-title">Hotel Vista Verde</div>
+                            <div class="ad-desc">Disfruta de una experiencia única rodeado del bosque nuboso. Reserva
+                                ahora y obtén 20% de descuento.</div>
+                            <a href="#" class="ad-cta">Reservar ahora</a>
+                        </div>
+                    </div>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-i18n="services.title">Nuestros Servicios</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-taxi"></i>
+                    <!-- Ad 2 -->
+                    <div class="ad-card">
+                        <img class="ad-card-image"
+                            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=320&fit=crop"
+                            alt="Restaurante">
+                        <div class="ad-card-body">
+                            <div class="ad-badge">📢 Anuncio</div>
+                            <div class="ad-title">Soda El Colibrí</div>
+                            <div class="ad-desc">Cocina típica costarricense con ingredientes locales frescos.
+                                ¡Visítanos en el centro de Monteverde!</div>
+                            <a href="#" class="ad-cta">Ver menú</a>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <h3 data-i18n="service.gotravel">GoTravel</h3>
-                        <p data-i18n="services.gotravel.description">Más que un transporte una experiencia de movilidad.
-                            Conductores locales que conocen cada rincón de la zona. Pide un taxi o compras a tu puerta.
-                        </p>
-                        <a href="http://gotravel.monteverdecloud.com" class="btn btn-primary btn-service"
-                            data-i18n="services.gotravel.button">Más información</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-scissors"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-i18n="services.vipbarber.title">VIP Barber Shop</h3>
-                        <p data-i18n="services.vipbarber.description" style="margin-bottom: 30px;">Más que una barbería,
-                            renueva tu estilo. Donde cada corte es un traje a medida y cada visita, una experiencia
-                            exclusiva.</p>
-                        <a href="http://vipbarber.monteverdecloud.com" class="btn btn-primary btn-service"
-                            data-i18n="services.vipbarber.button">Más información</a>
-                    </div>
-                </div>
-                <!-- <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-i18n="services.directory.title">Directorio Comercial</h3>
-                        <p data-i18n="services.directory.description">Encuentra los mejores restaurantes, alojamientos, tours y comercios locales en un solo lugar.</p>
-                        <a href="#" class="btn btn-primary" data-i18n="services.directory.button">Explorar comercios</a>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
 
-    <!-- Map Section -->
-    <!-- <section class="map-section">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-i18n="map.title">Mapa de Monteverde</h2>
-                <p data-i18n="map.description">Explora todos los servicios disponibles en la zona</p>
+                    <!-- Ad 3 -->
+                    <div class="ad-card">
+                        <img class="ad-card-image"
+                            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=320&fit=crop"
+                            alt="Tour">
+                        <div class="ad-card-body">
+                            <div class="ad-badge">📢 Anuncio</div>
+                            <div class="ad-title">Canopy Sky Adventures</div>
+                            <div class="ad-desc">Los mejores tours de canopy de Costa Rica. Vuela sobre el bosque nuboso
+                                y vive la emoción.</div>
+                            <a href="#" class="ad-cta">Más información</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="map-container">
-                <p data-i18n="map.placeholder">Mapa interactivo de Monteverde con ubicación de comercios y servicios</p>
-            </div>
-        </div>
-    </section> -->
+            <!-- /PANTALLA IZQUIERDA -->
 
-    <!-- Features Section -->
-    <!-- <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-i18n="features.title">¿Por qué elegirnos?</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas leaf fa-leaf"></i>
-                    </div>
-                    <h3 data-i18n="features.nature.title">Conectados con la naturaleza</h3>
-                    <p data-i18n="features.nature.description">Promovemos el turismo sostenible y el apoyo a comercios locales de Monteverde.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h3 data-i18n="features.tech.title">Tecnología moderna</h3>
-                    <p data-i18n="features.tech.description">Plataforma digital accesible desde cualquier dispositivo con conexión a internet.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3 data-i18n="features.local.title">Hecho por locales</h3>
-                    <p data-i18n="features.local.description">Desarrollado por personas que conocen y aman Monteverde para garantizar autenticidad.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 data-i18n="features.support.title">Atención personalizada</h3>
-                    <p data-i18n="features.support.description">Te ayudamos a encontrar exactamente lo que necesitas para disfrutar de Monteverde.</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
+            <!-- ══════════ PANTALLA CENTRAL: Home Screen ══════════ -->
+            <div class="screen-panel home-screen" id="panelHome">
 
-    <!-- CTA Section -->
-    <!-- <section class="cta">
-        <div class="container">
-            <h2 data-i18n="cta.title">¿Eres un comercio de Monteverde?</h2>
-            <p data-i18n="cta.description">Únete a nuestra plataforma y llega a más turistas y locales. Amplía tu visibilidad digital con nosotros.</p>
-            <a href="#" class="btn btn-outline" data-i18n="cta.button">Registrar mi comercio</a>
-        </div>
-    </section> -->
+                <!-- Widget de carrusel -->
+                <div class="widget-container">
+                    <div class="widget-header">
+                        <div class="widget-title">Destacado</div>
+                        <div class="scroll-indicator" id="scrollIndicator">
+                            <div class="scroll-dot active" onclick="selectImage(0)"></div>
+                            <div class="scroll-dot" onclick="selectImage(1)"></div>
+                            <div class="scroll-dot" onclick="selectImage(2)"></div>
+                            <div class="scroll-dot" onclick="selectImage(3)"></div>
+                        </div>
+                    </div>
 
-    <!-- Footer -->
-    <!-- <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Monteverde Cloud</h3>
-                    <p data-i18n="footer.description">La plataforma digital que conecta turistas y locales con los comercios y servicios de Monteverde.</p>
+                    <div class="widget-content">
+                        <div class="widget-display" id="widgetDisplay">
+                            <div class="widget-image-card active" data-index="0">
+                                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
+                                    alt="Bosque nuboso">
+                                <div class="widget-image-overlay">
+                                    <div class="widget-image-title">Reserva Natural</div>
+                                    <div class="widget-image-subtitle">Monteverde, Costa Rica</div>
+                                </div>
+                            </div>
+                            <div class="widget-image-card" data-index="1">
+                                <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&h=400&fit=crop"
+                                    alt="Niebla">
+                                <div class="widget-image-overlay">
+                                    <div class="widget-image-title">Nebulosa Matutina</div>
+                                    <div class="widget-image-subtitle">6:00 AM - Sendero</div>
+                                </div>
+                            </div>
+                            <div class="widget-image-card" data-index="2">
+                                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&h=400&fit=crop"
+                                    alt="Puente colgante">
+                                <div class="widget-image-overlay">
+                                    <div class="widget-image-title">Puentes Colgantes</div>
+                                    <div class="widget-image-subtitle">Aventura en la canopy</div>
+                                </div>
+                            </div>
+                            <div class="widget-image-card" data-index="3">
+                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop"
+                                    alt="Montañas">
+                                <div class="widget-image-overlay">
+                                    <div class="widget-image-title">Cordillera</div>
+                                    <div class="widget-image-subtitle">Vista panorámica</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3 data-i18n="footer.links.title">Enlaces rápidos</h3>
-                    <ul>
-                        <li><a href="#" data-i18n="footer.links.home">Inicio</a></li>
-                        <li><a href="#" data-i18n="footer.links.services">Servicios</a></li>
-                        <li><a href="#" data-i18n="footer.links.map">Mapa</a></li>
-                        <li><a href="#" data-i18n="footer.links.businesses">Comercios</a></li>
-                        <li><a href="#" data-i18n="footer.links.contact">Contacto</a></li>
-                    </ul>
+                <!-- /Widget de carrusel -->
+
+                <!-- Apps -->
+                <div class="apps-grid" id="appsGrid">
+                    <div class="app-item" data-app="Cafetería" data-icon="☕" data-class="app-cafeteria"
+                        onclick="launchApp('Cafetería')">
+                        <div class="app-icon app-cafeteria">☕</div>
+                        <div class="app-label">Cafetería</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
+                    <div class="app-item" data-app="Restaurante" data-icon="🍽️" data-class="app-cafeteria"
+                        onclick="launchApp('Restaurante')">
+                        <div class="app-icon app-cafeteria">🍽️</div>
+                        <div class="app-label">Restaurante</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
+                    <div class="app-item" data-app="Reserva" data-icon="🌲" data-class="app-spa"
+                        onclick="launchApp('Reserva')">
+                        <div class="app-icon app-spa">🌲</div>
+                        <div class="app-label">Reserva</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
+                    <div class="app-item" data-app="Spa" data-icon="🧘" data-class="app-spa" onclick="launchApp('Spa')">
+                        <div class="app-icon app-spa">🧘</div>
+                        <div class="app-label">Spa</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
+                    <div class="app-item" data-app="Barbería" data-icon="✂️" data-class="app-barberia"
+                        onclick="launchApp('Barbería')">
+                        <div class="app-icon app-barberia">✂️</div>
+                        <div class="app-label">Barbería</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
+                    <div class="app-item" data-app="Transporte" data-icon="🚗" data-class="app-transporte"
+                        onclick="launchApp('Transporte')">
+                        <div class="app-icon app-transporte">🚗</div>
+                        <div class="app-label">Transporte</div>
+                        <div class="fav-btn" onclick="toggleFavorite(event, this)">☆</div>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3 data-i18n="footer.services.title">Servicios</h3>
-                    <ul>
-                        <li><a href="#" data-i18n="footer.services.taxi">Taxi</a></li>
-                        <li><a href="#" data-i18n="footer.services.map">Mapa interactivo</a></li>
-                        <li><a href="#" data-i18n="footer.services.directory">Directorio comercial</a></li>
-                        <li><a href="#" data-i18n="footer.services.guide">Guía turística</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 data-i18n="footer.contact.title">Contacto</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Monteverde, Puntarenas, Costa Rica</li>
-                        <li><i class="fas fa-phone"></i> +506 1234 5678</li>
-                        <li><i class="fas fa-envelope"></i> info@monteverdecloud.com</li>
-                    </ul>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <!-- /Apps -->
+
+            </div>
+            <!-- /PANTALLA CENTRAL -->
+
+            <!-- ══════════ PANTALLA DERECHA: Favoritos ══════════ -->
+            <div class="screen-panel" id="panelFavorites">
+                <div class="favorites-panel">
+                    <!-- Header -->
+                    <div class="fav-panel-header">
+                        <div class="fav-panel-icon">⭐</div>
+                        <div>
+                            <div class="fav-panel-title">Favoritos</div>
+                            <div class="fav-panel-subtitle">Tus accesos rápidos</div>
+                        </div>
+                    </div>
+
+                    <!-- Contenido de favoritos (se llena dinámicamente) -->
+                    <div id="favoritesContent">
+                        <div class="fav-empty" id="favEmpty">
+                            <div class="fav-empty-icon">⭐</div>
+                            <div class="fav-empty-text">Aún no tienes favoritos.<br>Mantén presionado un ícono en la
+                                pantalla principal para agregarlo.</div>
+                        </div>
+                        <div class="fav-grid" id="favGrid" style="display:none"></div>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Monteverde Cloud. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+            <!-- /PANTALLA DERECHA -->
+
+        </div>
+    </div>
+
+    <!-- Dock inferior -->
+    <div class="dock-container">
+        <div class="dock">
+            <div class="app-item" onclick="launchApp('Noticias')">
+                <div class="app-icon app-noticias">📰</div>
+                <div class="app-label">Noticias</div>
+            </div>
+
+            <div class="app-item" onclick="launchApp('Facebook')">
+                <div class="app-icon app-facebook">📘</div>
+                <div class="app-label">Contactanos</div>
+            </div>
+
+            <div class="app-item" onclick="launchApp('Instagram')">
+                <div class="app-icon app-instagram">📬</div>
+                <div class="app-label">Sugerencias</div>
+            </div>
+
+            <div class="app-item" onclick="launchApp('Agregar comercio')">
+                <div class="app-icon app-agregar">➕</div>
+                <div class="app-label">Agregar comercio</div>
             </div>
         </div>
-    </footer> -->
+    </div>
+    <!-- /Dock inferior -->
 
     <script>
-        // Simple JavaScript for header scroll effect
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'var(--dark-green)';
-                header.style.padding = '10px 0';
+        // ══════════════════════════════════════════
+        // Reloj en tiempo real
+        // ══════════════════════════════════════════
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ══════════════════════════════════════════
+        // Sistema de pantallas (slider de 3 paneles)
+        // ══════════════════════════════════════════
+        const slider = document.getElementById('screensSlider');
+        const wrapper = document.getElementById('screensWrapper');
+        const totalPanels = 3;
+        let currentPanel = 1; // Comenzar en el panel central (Home)
+
+        function goToPanel(index, animate = true) {
+            if (index < 0 || index >= totalPanels) return;
+            currentPanel = index;
+            if (!animate) slider.classList.add('no-transition');
+            slider.style.transform = `translateX(-${index * (100 / totalPanels)}%)`;
+            if (!animate) requestAnimationFrame(() => slider.classList.remove('no-transition'));
+            updatePageDots();
+        }
+
+        function updatePageDots() {
+            for (let i = 0; i < totalPanels; i++) {
+                document.getElementById(`dot-${i}`).classList.toggle('active', i === currentPanel);
+            }
+        }
+
+        // Inicializar en panel central
+        goToPanel(1, false);
+
+        // ── Gestos de deslizamiento horizontal (touch y mouse) ──
+        let panelTouchStartX = 0;
+        let panelTouchStartY = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+        let isHorizontalSwipe = null;
+
+        wrapper.addEventListener('touchstart', (e) => {
+            panelTouchStartX = e.touches[0].clientX;
+            panelTouchStartY = e.touches[0].clientY;
+            isHorizontalSwipe = null;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', (e) => {
+            if (isHorizontalSwipe === null) {
+                const dx = Math.abs(e.touches[0].clientX - panelTouchStartX);
+                const dy = Math.abs(e.touches[0].clientY - panelTouchStartY);
+                isHorizontalSwipe = dx > dy;
+            }
+            if (isHorizontalSwipe) e.preventDefault();
+        }, { passive: false });
+
+        wrapper.addEventListener('touchend', (e) => {
+            if (!isHorizontalSwipe) return;
+            const diff = panelTouchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                goToPanel(diff > 0 ? Math.min(currentPanel + 1, totalPanels - 1) : Math.max(currentPanel - 1, 0));
+            }
+        }, { passive: true });
+
+        // Arrastre con mouse
+        wrapper.addEventListener('mousedown', (e) => {
+            // Solo capturar si no es el widgetDisplay
+            if (e.target.closest('#widgetDisplay')) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            slider.classList.add('no-transition');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            // Solo movimiento de pantallas, no del carrusel
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            slider.classList.remove('no-transition');
+            const diff = dragStartX - e.clientX;
+            if (Math.abs(diff) > 60) {
+                goToPanel(diff > 0 ? Math.min(currentPanel + 1, totalPanels - 1) : Math.max(currentPanel - 1, 0));
             } else {
-                header.style.background = 'linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%)';
-                header.style.padding = '15px 0';
+                goToPanel(currentPanel); // Snap de vuelta
             }
         });
 
-        // Language switching functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const languageSelector = document.getElementById('languageSelector');
-            const languageOptions = document.querySelectorAll('.language-option');
+        // ══════════════════════════════════════════
+        // Carrusel del widget de imágenes
+        // ══════════════════════════════════════════
+        const cards = document.querySelectorAll('.widget-image-card');
+        const dots = document.querySelectorAll('.scroll-dot');
+        const widgetDisplay = document.getElementById('widgetDisplay');
+        let currentIndex = 0;
+        const intervalTime = 10000;
+        let carouselInterval;
+        let autoPlayTimeout;
+        let isManualControl = false;
+        let touchStartX = 0;
 
-            // Translations object
-            const translations = {
-                'es': {
-                    'nav.home': 'Inicio',
-                    'nav.services': 'Servicios',
-                    'nav.map': 'Mapa',
-                    'nav.businesses': 'Comercios',
-                    'nav.contact': 'Contacto',
-                    'nav.register': 'Registrarse',
-                    'hero.title': 'Descubre Monteverde de forma digital',
-                    'hero.description': 'Conectamos turistas y locales con los mejores comercios y servicios de la zona a través de una plataforma moderna y fácil de usar.',
-                    'hero.button': 'Explorar servicios',
-                    'services.title': 'Nuestros Servicios',
-                    'service.gotravel': 'GoTravel',
-                    'services.gotravel.description': 'Más que un transporte una experiencia de movilidad. Conductores locales que conocen cada rincón de la zona. Pide un taxi o compras a tu puerta.',
-                    'services.gotravel.button': 'Más información',
-                    'services.vipbarber.title': 'VIP Barber Shop',
-                    'services.vipbarber.description': 'Más que una barbería, renueva tu estilo. Donde cada corte es un traje a medida y cada visita, una experiencia exclusiva.',
-                    'services.vipbarber.button': 'Más información',
-                    'services.directory.title': 'Directorio Comercial',
-                    'services.directory.description': 'Encuentra los mejores restaurantes, alojamientos, tours y comercios locales en un solo lugar.',
-                    'services.directory.button': 'Explorar comercios',
-                    'map.title': 'Mapa de Monteverde',
-                    'map.description': 'Explora todos los servicios disponibles en la zona',
-                    'map.placeholder': 'Mapa interactivo de Monteverde con ubicación de comercios y servicios',
-                    'features.title': '¿Por qué elegirnos?',
-                    'features.nature.title': 'Conectados con la naturaleza',
-                    'features.nature.description': 'Promovemos el turismo sostenible y el apoyo a comercios locales de Monteverde.',
-                    'features.tech.title': 'Tecnología moderna',
-                    'features.tech.description': 'Plataforma digital accesible desde cualquier dispositivo con conexión a internet.',
-                    'features.local.title': 'Hecho por locales',
-                    'features.local.description': 'Desarrollado por personas que conocen y aman Monteverde para garantizar autenticidad.',
-                    'features.support.title': 'Atención personalizada',
-                    'features.support.description': 'Te ayudamos a encontrar exactamente lo que necesitas para disfrutar de Monteverde.',
-                    'cta.title': '¿Eres un comercio de Monteverde?',
-                    'cta.description': 'Únete a nuestra plataforma y llega a más turistas y locales. Amplía tu visibilidad digital con nosotros.',
-                    'cta.button': 'Registrar mi comercio',
-                    'footer.description': 'La plataforma digital que conecta turistas y locales con los comercios y servicios de Monteverde.',
-                    'footer.links.title': 'Enlaces rápidos',
-                    'footer.links.home': 'Inicio',
-                    'footer.links.services': 'Servicios',
-                    'footer.links.map': 'Mapa',
-                    'footer.links.businesses': 'Comercios',
-                    'footer.links.contact': 'Contacto',
-                    'footer.services.title': 'Servicios',
-                    'footer.services.taxi': 'Taxi',
-                    'footer.services.map': 'Mapa interactivo',
-                    'footer.services.directory': 'Directorio comercial',
-                    'footer.services.guide': 'Guía turística',
-                    'footer.contact.title': 'Contacto',
-                    'footer.rights': 'Todos los derechos reservados.'
-                },
-                'en': {
-                    'nav.home': 'Home',
-                    'nav.services': 'Services',
-                    'nav.map': 'Map',
-                    'nav.businesses': 'Businesses',
-                    'nav.contact': 'Contact',
-                    'nav.register': 'Sign Up',
-                    'hero.title': 'Discover Monteverde Digitally',
-                    'hero.description': 'We connect tourists and locals with the best businesses and services in the area through a modern and easy-to-use platform.',
-                    'hero.button': 'Explore services',
-                    'services.title': 'Our Services',
-                    'service.gotravel': 'GoTravel',
-                    'services.gotravel.description': "More than just transportation, it's a mobility experience. Local drivers who know every corner of the area. Order a taxi or have your purchases delivered to your door.",
-                    'services.gotravel.button': 'More information',
-                    'services.vipbarber.title': 'VIP Barber Shop',
-                    'services.vipbarber.description': "More than just a barbershop, it's a style makeover. Where every cut is a custom-made suit and every visit, an exclusive experience.",
-                    'services.vipbarber.button': 'More information',
-                    'services.directory.title': 'Business Directory',
-                    'services.directory.description': 'Find the best restaurants, accommodations, tours and local businesses in one place.',
-                    'services.directory.button': 'Explore businesses',
-                    'map.title': 'Monteverde Map',
-                    'map.description': 'Explore all services available in the area',
-                    'map.placeholder': 'Interactive map of Monteverde with location of businesses and services',
-                    'features.title': 'Why Choose Us?',
-                    'features.nature.title': 'Connected with nature',
-                    'features.nature.description': 'We promote sustainable tourism and support local businesses in Monteverde.',
-                    'features.tech.title': 'Modern technology',
-                    'features.tech.description': 'Digital platform accessible from any device with internet connection.',
-                    'features.local.title': 'Made by locals',
-                    'features.local.description': 'Developed by people who know and love Monteverde to ensure authenticity.',
-                    'features.support.title': 'Personalized attention',
-                    'features.support.description': 'We help you find exactly what you need to enjoy Monteverde.',
-                    'cta.title': 'Are you a Monteverde business?',
-                    'cta.description': 'Join our platform and reach more tourists and locals. Expand your digital visibility with us.',
-                    'cta.button': 'Register my business',
-                    'footer.description': 'The digital platform that connects tourists and locals with Monteverde businesses and services.',
-                    'footer.links.title': 'Quick Links',
-                    'footer.links.home': 'Home',
-                    'footer.links.services': 'Services',
-                    'footer.links.map': 'Map',
-                    'footer.links.businesses': 'Businesses',
-                    'footer.links.contact': 'Contact',
-                    'footer.services.title': 'Services',
-                    'footer.services.taxi': 'Taxi',
-                    'footer.services.map': 'Interactive Map',
-                    'footer.services.directory': 'Business Directory',
-                    'footer.services.guide': 'Tourist Guide',
-                    'footer.contact.title': 'Contact',
-                    'footer.rights': 'All rights reserved.'
-                }
-            };
+        function showImage(index, direction = 'right') {
+            if (currentIndex !== index) {
+                cards[currentIndex].classList.remove('active');
+                cards[currentIndex].classList.add(direction === 'right' ? 'direction-left' : 'direction-right');
+            }
+            cards.forEach((card, i) => { if (i !== index) card.classList.remove('active'); });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            cards[index].classList.remove('direction-left', 'direction-right');
+            cards[index].classList.add('active');
+            currentIndex = index;
+        }
 
-            // Function to change language
-            function changeLanguage(lang) {
-                // Update all elements with data-i18n attribute
-                document.querySelectorAll('[data-i18n]').forEach(element => {
-                    const key = element.getAttribute('data-i18n');
-                    if (translations[lang] && translations[lang][key]) {
-                        element.textContent = translations[lang][key];
-                    }
-                });
+        function nextImage() { showImage((currentIndex + 1) % cards.length, 'right'); }
+        function prevImage() { showImage((currentIndex - 1 + cards.length) % cards.length, 'left'); }
 
-                // Update active language button
-                languageOptions.forEach(option => {
-                    if (option.getAttribute('data-lang') === lang) {
-                        option.classList.add('active');
-                    } else {
-                        option.classList.remove('active');
-                    }
-                });
+        function selectImage(index) {
+            isManualControl = true;
+            showImage(index, index > currentIndex ? 'right' : 'left');
+            pauseAutoPlay();
+        }
 
-                // Update html lang attribute
-                document.documentElement.setAttribute('lang', lang);
+        function startCarousel() {
+            carouselInterval = setInterval(nextImage, intervalTime);
+            isManualControl = false;
+        }
 
-                // Save language preference
-                localStorage.setItem('language', lang);
+        function pauseAutoPlay() {
+            clearInterval(carouselInterval);
+            clearTimeout(autoPlayTimeout);
+            autoPlayTimeout = setTimeout(startCarousel, 5000);
+        }
+
+        startCarousel();
+
+        widgetDisplay.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        widgetDisplay.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 30) {
+                isManualControl = true;
+                diff > 0 ? showImage((currentIndex + 1) % cards.length, 'left') : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
+                pauseAutoPlay();
+            }
+        }, { passive: true });
+
+        let lastScrollTime = 0;
+        widgetDisplay.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const now = Date.now();
+            if (now - lastScrollTime < 600) return;
+            lastScrollTime = now;
+            isManualControl = true;
+            (e.deltaX > 0 || e.deltaY > 0)
+                ? showImage((currentIndex + 1) % cards.length, 'left')
+                : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
+            pauseAutoPlay();
+        }, { passive: false });
+
+        widgetDisplay.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        widgetDisplay.addEventListener('mouseleave', () => { if (!isManualControl) startCarousel(); });
+
+        // ══════════════════════════════════════════
+        // Sistema de Favoritos
+        // ══════════════════════════════════════════
+        let favorites = JSON.parse(localStorage.getItem('mc_favorites') || '[]');
+
+        function saveFavorites() {
+            localStorage.setItem('mc_favorites', JSON.stringify(favorites));
+        }
+
+        function toggleFavorite(event, btn) {
+            event.stopPropagation();
+            const appItem = btn.closest('.app-item');
+            const appName = appItem.dataset.app;
+            const appIcon = appItem.dataset.icon;
+            const appClass = appItem.dataset.class;
+            const isFav = favorites.some(f => f.name === appName);
+
+            if (isFav) {
+                favorites = favorites.filter(f => f.name !== appName);
+                btn.textContent = '☆';
+                btn.classList.remove('is-fav');
+            } else {
+                favorites.push({ name: appName, icon: appIcon, cls: appClass });
+                btn.textContent = '★';
+                btn.classList.add('is-fav');
+            }
+            saveFavorites();
+            renderFavorites();
+        }
+
+        function renderFavorites() {
+            const favEmpty = document.getElementById('favEmpty');
+            const favGrid = document.getElementById('favGrid');
+
+            if (favorites.length === 0) {
+                favEmpty.style.display = 'flex';
+                favGrid.style.display = 'none';
+                return;
             }
 
-            // Add click event to language options
-            languageOptions.forEach(option => {
-                option.addEventListener('click', function () {
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                });
+            favEmpty.style.display = 'none';
+            favGrid.style.display = 'grid';
+            favGrid.innerHTML = '';
+
+            favorites.forEach(fav => {
+                const item = document.createElement('div');
+                item.className = 'app-item';
+                item.innerHTML = `
+                    <div class="app-icon ${fav.cls}">${fav.icon}</div>
+                    <div class="app-label">${fav.name}</div>
+                `;
+                item.addEventListener('click', () => launchApp(fav.name));
+                favGrid.appendChild(item);
             });
+        }
 
-            // Check for saved language preference or default to Spanish
-            const savedLanguage = localStorage.getItem('language') || 'es';
-            changeLanguage(savedLanguage);
-        });
+        function initFavButtons() {
+            document.querySelectorAll('#appsGrid .app-item').forEach(item => {
+                const appName = item.dataset.app;
+                const btn = item.querySelector('.fav-btn');
+                if (favorites.some(f => f.name === appName)) {
+                    btn.textContent = '★';
+                    btn.classList.add('is-fav');
+                }
+
+                // Mostrar fav-btn al mantener presionado
+                let pressTimer;
+                item.addEventListener('touchstart', () => {
+                    pressTimer = setTimeout(() => item.classList.add('show-fav'), 500);
+                }, { passive: true });
+                item.addEventListener('touchend', () => clearTimeout(pressTimer), { passive: true });
+            });
+        }
+
+        initFavButtons();
+        renderFavorites();
+
+        // ══════════════════════════════════════════
+        // Partículas
+        // ══════════════════════════════════════════
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ══════════════════════════════════════════
+        // Simulación de apertura de app
+        // ══════════════════════════════════════════
+        function launchApp(name) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: #1a3c34;
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            const spinner = document.createElement('div');
+            spinner.style.cssText = `
+                width: 50px; height: 50px;
+                border: 3px solid rgba(74,144,117,0.3);
+                border-top-color: #4a9075;
+                border-radius: 50%;
+                animation: spin 0.8s linear infinite;
+            `;
+            const label = document.createElement('div');
+            label.textContent = `Abriendo ${name}...`;
+            label.style.cssText = `margin-top: 20px; color: #5a8a75; font-size: 16px; font-weight: 500;`;
+            const style = document.createElement('style');
+            style.textContent = `@keyframes spin { to { transform: rotate(360deg); } }`;
+            document.head.appendChild(style);
+            overlay.appendChild(spinner);
+            overlay.appendChild(label);
+            document.body.appendChild(overlay);
+            requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.remove(), 300);
+            }, 1500);
+        }
+
+        // Prevenir zoom
+        document.addEventListener('dblclick', (e) => e.preventDefault(), { passive: false });
     </script>
 </body>
 
