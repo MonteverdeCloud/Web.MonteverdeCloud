@@ -536,71 +536,50 @@
         .folder-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #f5a623 0%, #f78e69 100%);
-            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            box-shadow:
-                0 8px 16px rgba(245, 166, 35, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             position: relative;
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            will-change: transform;
         }
 
-        .folder-icon::after {
+        .folder-icon::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-            pointer-events: none;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+            z-index: 1;
         }
 
         /* Estilos de colores para cada carpeta */
         .folder-icon.comida {
-            background: linear-gradient(135deg, #6bbfa0 0%, #4a9075 100%);
-            box-shadow:
-                0 8px 16px rgba(107, 191, 160, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            background: linear-gradient(135deg, rgba(107, 191, 160, 0.4) 0%, rgba(74, 144, 117, 0.2) 100%);
         }
 
         .folder-icon.descanso {
-            background: linear-gradient(135deg, #4a9075 0%, #2d5f52 100%);
-            box-shadow:
-                0 8px 16px rgba(74, 144, 117, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            background: linear-gradient(135deg, rgba(74, 144, 117, 0.4) 0%, rgba(45, 95, 82, 0.2) 100%);
         }
 
         .folder-icon.servicios {
-            background: linear-gradient(135deg, #5a8a75 0%, #3d6b5c 100%);
-            box-shadow:
-                0 8px 16px rgba(90, 138, 117, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            background: linear-gradient(135deg, rgba(90, 138, 117, 0.4) 0%, rgba(61, 107, 92, 0.2) 100%);
         }
 
         .folder-icon.salud {
-            background: linear-gradient(135deg, #8fbfa9 0%, #6bbfa0 100%);
-            box-shadow:
-                0 8px 16px rgba(143, 191, 169, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            background: linear-gradient(135deg, rgba(143, 191, 169, 0.4) 0%, rgba(107, 191, 160, 0.2) 100%);
         }
 
         .folder-icon.compras {
-            background: linear-gradient(135deg, #70b8a3 0%, #4a9075 100%);
-            box-shadow:
-                0 8px 16px rgba(112, 184, 163, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            background: linear-gradient(135deg, rgba(112, 184, 163, 0.4) 0%, rgba(74, 144, 117, 0.2) 100%);
         }
 
         .folder-item:active .folder-icon {
@@ -610,14 +589,15 @@
         /* Vista previa de apps dentro de la carpeta */
         .folder-preview {
             position: absolute;
-            top: 8px;
-            left: 8px;
-            width: 50px;
-            height: 50px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            gap: 2px;
+            gap: 4px;
             pointer-events: none;
             z-index: 2;
         }
@@ -625,12 +605,15 @@
         .preview-app {
             width: 100%;
             height: 100%;
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .folder-label {
@@ -750,8 +733,8 @@
         }
 
         .folder-app-item:active {
-            transform: scale(0.88);
-            opacity: 0.8;
+            transform: scale(0.9);
+            filter: brightness(0.9);
         }
 
         .app-item {
@@ -775,13 +758,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 24px;
             position: relative;
             overflow: hidden;
             box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            transition: all 0.3s ease;
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 1px 0 rgba(255, 255, 255, 0.2) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .app-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(0, 0, 0, 0.05) 100%);
+            z-index: 1;
         }
 
         .app-icon::after {
@@ -796,15 +789,15 @@
         }
 
         .app-barberia {
-            background: linear-gradient(135deg, #4a9075 0%, #1a3c34 100%);
+            background: linear-gradient(135deg, #4e9a7e 0%, #1a3c34 100%);
         }
 
         .app-spa {
-            background: linear-gradient(135deg, #6bbfa0 0%, #4a9075 100%);
+            background: linear-gradient(135deg, #72c8aa 0%, #4a9075 100%);
         }
 
         .app-transporte {
-            background: linear-gradient(135deg, #5a8a75 0%, #1a3c34 100%);
+            background: linear-gradient(135deg, #5f937d 0%, #1a3c34 100%);
         }
 
         .app-facebook {
@@ -922,7 +915,7 @@
         @keyframes appEnter {
             from {
                 opacity: 0;
-                transform: translateY(20px) scale(0.95);
+                transform: translateY(12px) scale(0.9);
             }
 
             to {
@@ -931,9 +924,11 @@
             }
         }
 
-        .app-item {
-            animation: appEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        .app-item,
+        .folder-item {
+            animation: appEnter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             opacity: 0;
+            will-change: transform, opacity;
         }
 
         .app-item:nth-child(1) {
