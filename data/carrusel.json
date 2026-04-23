@@ -1,0 +1,17 @@
+[
+    {
+        "descripción": "Monteverde Cloud",
+        "imagen": "./img/carrusel/monteverde-cloud.jpg",
+        "web": "https://www.facebook.com/profile.php?id=61578149921802"
+    },
+    {
+        "descripción": "Baobab Spa",
+        "imagen": "./img/carrusel/baobab.png",
+        "web": "https://baobab506.com"
+    },
+    {
+        "descripción": "Vip Barber Shop",
+        "imagen": "./img/carrusel/vip-barber.png",
+        "web": "https://vipbarber.monteverdecloud.com"
+    }
+]

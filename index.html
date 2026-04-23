@@ -430,8 +430,10 @@
         .widget-image-card img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.2);
         }
+
 
         /* Indicador de progreso automático */
         .auto-progress {
@@ -988,34 +990,17 @@
                         <div class="widget-header">
                             <div class="widget-title">Destacado</div>
                             <div class="scroll-indicator" id="scrollIndicator">
-                                <div class="scroll-dot active" onclick="selectImage(0)"></div>
-                                <div class="scroll-dot" onclick="selectImage(1)"></div>
-                                <div class="scroll-dot" onclick="selectImage(2)"></div>
-                                <div class="scroll-dot" onclick="selectImage(3)"></div>
+                                <!-- Cargado dinámicamente -->
                             </div>
                         </div>
-
                         <div class="widget-content">
+
                             <div class="widget-display" id="widgetDisplay">
-                                <div class="widget-image-card active" data-index="0">
-                                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
-                                        alt="Bosque nuboso">
-                                </div>
-                                <div class="widget-image-card" data-index="1">
-                                    <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=600&h=400&fit=crop"
-                                        alt="Niebla">
-                                </div>
-                                <div class="widget-image-card" data-index="2">
-                                    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&h=400&fit=crop"
-                                        alt="Puente colgante">
-                                </div>
-                                <div class="widget-image-card" data-index="3">
-                                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop"
-                                        alt="Montañas">
-                                </div>
+                                <!-- Cargado dinámicamente desde data/carrusel.json -->
                             </div>
                         </div>
                     </div>
+
                     <!-- /Widget de carrusel -->
 
                     <!-- Apps (Carpetas) -->
@@ -1094,7 +1079,7 @@
 
                 <!-- ══════════ PANTALLA DERECHA: Información ══════════ -->
                 <div class="screen-panel" id="panelInfo">
-                    <div style="padding: 20px;">
+                    <div style="padding: 10px;">
                         <h2 style="color: #fff; font-size: 18px; margin-bottom: 16px; text-align: left;">Favoritos</h2>
                     </div>
                 </div>
@@ -1271,16 +1256,49 @@
         // ══════════════════════════════════════════
         // Carrusel del widget de imágenes
         // ══════════════════════════════════════════
-        const cards = document.querySelectorAll('.widget-image-card');
-        const dots = document.querySelectorAll('.scroll-dot');
+        let cards = [];
+        let dots = [];
         const widgetDisplay = document.getElementById('widgetDisplay');
+        const scrollIndicator = document.getElementById('scrollIndicator');
         let currentIndex = 0;
-        const intervalTime = 10000;
+        const intervalTime = 5000;
         let carouselInterval;
-        let autoPlayTimeout;
         let isManualControl = false;
 
+        async function initCarousel() {
+            try {
+                const response = await fetch('data/carrusel.json');
+                const data = await response.json();
+                
+                // Generar cards e indicadores
+                data.forEach((item, index) => {
+                    // Card
+                    const card = document.createElement('div');
+                    card.className = `widget-image-card ${index === 0 ? 'active' : ''}`;
+                    card.dataset.index = index;
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => window.open(item.web, '_blank');
+                    card.innerHTML = `<img src="${item.imagen}" alt="${item.descripción}">`;
+                    widgetDisplay.appendChild(card);
+
+                    // Dot
+                    const dot = document.createElement('div');
+                    dot.className = `scroll-dot ${index === 0 ? 'active' : ''}`;
+                    dot.onclick = () => selectImage(index);
+                    scrollIndicator.appendChild(dot);
+                });
+
+                cards = document.querySelectorAll('.widget-image-card');
+                dots = document.querySelectorAll('.scroll-dot');
+                
+                startCarousel();
+            } catch (error) {
+                console.error('Error cargando carrusel:', error);
+            }
+        }
+
         function showImage(index, direction = 'right') {
+            if (cards.length === 0) return;
             if (currentIndex !== index) {
                 cards[currentIndex].classList.remove('active');
                 cards[currentIndex].classList.add(direction === 'right' ? 'direction-left' : 'direction-right');
@@ -1292,92 +1310,30 @@
             currentIndex = index;
         }
 
-        function nextImage() { showImage((currentIndex + 1) % cards.length, 'right'); }
-        function prevImage() { showImage((currentIndex - 1 + cards.length) % cards.length, 'left'); }
+        function nextImage() { 
+            if (cards.length > 0) {
+                showImage((currentIndex + 1) % cards.length, 'right'); 
+            }
+        }
 
         function selectImage(index) {
-            isManualControl = true;
+            if (index === currentIndex) return;
             showImage(index, index > currentIndex ? 'right' : 'left');
-            pauseAutoPlay();
+            startCarousel(); // Reinicia el temporizador de 5 segundos
         }
 
         function startCarousel() {
+            if (carouselInterval) clearInterval(carouselInterval);
             carouselInterval = setInterval(nextImage, intervalTime);
-            isManualControl = false;
         }
 
-        function pauseAutoPlay() {
-            clearInterval(carouselInterval);
-            clearTimeout(autoPlayTimeout);
-            autoPlayTimeout = setTimeout(startCarousel, 5000);
-        }
+        initCarousel();
 
-        startCarousel();
-
-        // Control del carrusel con clicks en los dots
-        document.querySelectorAll('.scroll-dot').forEach((dot, index) => {
-            dot.addEventListener('click', () => selectImage(index));
-        });
-
-        // Control del carrusel con deslizamiento (swipe y drag)
-        let carouselTouchStartX = 0;
-        let carouselTouchStartY = 0;
-        let carouselIsDragging = false;
-        let carouselDragStartX = 0;
-        let carouselIsHorizontalSwipe = null;
-
-        widgetDisplay.addEventListener('touchstart', (e) => {
-            carouselTouchStartX = e.touches[0].clientX;
-            carouselTouchStartY = e.touches[0].clientY;
-            carouselIsHorizontalSwipe = null;
-        }, { passive: true });
-
-        widgetDisplay.addEventListener('touchmove', (e) => {
-            if (carouselIsHorizontalSwipe === null) {
-                const dx = Math.abs(e.touches[0].clientX - carouselTouchStartX);
-                const dy = Math.abs(e.touches[0].clientY - carouselTouchStartY);
-                carouselIsHorizontalSwipe = dx > dy;
-            }
-            if (carouselIsHorizontalSwipe) e.preventDefault();
-        }, { passive: false });
-
-        widgetDisplay.addEventListener('touchend', (e) => {
-            if (!carouselIsHorizontalSwipe) return;
-            const diff = carouselTouchStartX - e.changedTouches[0].clientX;
-            const threshold = widgetDisplay.getBoundingClientRect().width * 0.13;
-            if (Math.abs(diff) > threshold) {
-                isManualControl = true;
-                diff > 0
-                    ? showImage((currentIndex + 1) % cards.length, 'left')
-                    : showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
-                pauseAutoPlay();
-            }
-        }, { passive: true });
-
-        // Arrastre con mouse en el carrusel
-        widgetDisplay.addEventListener('mousedown', (e) => {
-            carouselIsDragging = true;
-            carouselDragStartX = e.clientX;
-        });
-
-        widgetDisplay.addEventListener('mousemove', (e) => {
-            if (!carouselIsDragging) return;
-            const diff = carouselDragStartX - e.clientX;
-            if (Math.abs(diff) > 10) {
-                isManualControl = true;
-                if (diff > 0) showImage((currentIndex + 1) % cards.length, 'left');
-                else showImage((currentIndex - 1 + cards.length) % cards.length, 'right');
-                carouselIsDragging = false;
-                pauseAutoPlay();
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            carouselIsDragging = false;
-        });
 
         widgetDisplay.addEventListener('mouseenter', () => clearInterval(carouselInterval));
-        widgetDisplay.addEventListener('mouseleave', () => { if (!isManualControl) startCarousel(); });
+        widgetDisplay.addEventListener('mouseleave', () => startCarousel());
+
+
 
         // ══════════════════════════════════════════
         // Partículas
